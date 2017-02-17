@@ -8,7 +8,7 @@ vis_dem(inpath = choose.dir(), pdf = FALSE, png = TRUE,
   col = terrain.colors(100), bg = "grey", ...)
 }
 \arguments{
-\item{inpath}{directory containing mHM input files "dem.asc" and "facc.asc".
+\item{inpath}{Directory containing mHM input files "dem.asc" and "facc.asc".
 DEFAULT: \code{\link{choose.dir}()}}
 
 \item{pdf, png}{Save output to disc? See \code{\link{pdf_png}}.
@@ -25,7 +25,8 @@ DEFAULT: PDF=FALSE, png=TRUE}
 dem matrix
 }
 \description{
-Visualize mHM elevation input data
+Visualize mHM elevation input data: dem (Digital Elevation Model) and
+facc (Flow Accumulation, rivers modeled from DEM)
 }
 \examples{
 # to be added

@@ -1,6 +1,7 @@
 #' Visualize dem and facc files
 #'
-#' Visualize mHM elevation input data
+#' Visualize mHM elevation input data: dem (Digital Elevation Model) and
+#' facc (Flow Accumulation, rivers modeled from DEM)
 #'
 #' @return dem matrix
 #' @author Berry Boessenkool, \email{berry-b@@gmx.de}, Feb 2017
@@ -14,7 +15,7 @@
 #' @examples
 #' # to be added
 #'
-#' @param inpath  directory containing mHM input files "dem.asc" and "facc.asc".
+#' @param inpath  Directory containing mHM input files "dem.asc" and "facc.asc".
 #'                DEFAULT: \code{\link{choose.dir}()}
 #' @param pdf,png Save output to disc? See \code{\link{pdf_png}}.
 #'                DEFAULT: PDF=FALSE, png=TRUE

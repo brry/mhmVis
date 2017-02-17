@@ -8,7 +8,7 @@ vis_discharge(file = file.choose(), ylab = "Discharge  [m\U{00B3}/s]",
   pdf = TRUE, png = FALSE, ...)
 }
 \arguments{
-\item{file}{name of mHM output file like "some/path/output/daily_discharge.out".
+\item{file}{Name of mHM output file like "some/path/output/daily_discharge.out".
 DEFAULT: \code{\link{file.choose}()}}
 
 \item{ylab}{Y axis label. DEFAULT: "Discharge  [m^3/s]"}

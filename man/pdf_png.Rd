@@ -2,7 +2,7 @@
 % Please edit documentation in R/pdf_png.R
 \name{pdf_png}
 \alias{pdf_png}
-\title{graph output file management}
+\title{Graph output file management}
 \usage{
 pdf_png(file, pdf = FALSE, png = FALSE, width = 7, height = 5,
   units = "in", res = 500, ...)

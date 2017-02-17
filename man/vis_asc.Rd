@@ -8,7 +8,7 @@ vis_asc(file = file.choose(), pdf = FALSE, png = TRUE,
   col = seqPal(100), bg = "grey", ...)
 }
 \arguments{
-\item{file}{name of file. DEFAULT: \code{\link{file.choose}()}}
+\item{file}{Name of file. DEFAULT: \code{\link{file.choose}()}}
 
 \item{pdf, png}{Save output to disc? See \code{\link{pdf_png}}.
 DEFAULT: PDF=FALSE, png=TRUE}

@@ -1,4 +1,4 @@
-#' graph output file management
+#' Graph output file management
 #'
 #' Graph output file management.
 #' Do not forget to close the graphics device again with code like \code{if(pdf|png) dev.off()}\.cr
