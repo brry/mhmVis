@@ -8,10 +8,11 @@
 #' @seealso \code{\link{pdf}}, \code{\link{png}}
 #' @keywords file
 #' @importFrom berryFunctions newFilename
+#' @importFrom grDevices pdf png
 #' @export
 #' @examples
 #'
-#' png_pdf("dummyplot", pdf=TRUE)
+#' pdf_png("dummyplot", pdf=TRUE)
 #' plot(cumsum(rnorm(1000)), type="l")
 #' dev.off()
 #'
@@ -30,7 +31,7 @@
 #'
 #  ----
 
-png_pdf <- function(
+pdf_png <- function(
  file,
  pdf=FALSE,
  png=FALSE,
