@@ -29,8 +29,6 @@
 #'                     DEFAULT: inches ("in"), 500 ppi
 #' @param \dots        Further arguments passed to \code{\link{pdf}} or \code{\link{png}}
 #'
-#  ----
-
 pdf_png <- function(
  file,
  pdf=FALSE,

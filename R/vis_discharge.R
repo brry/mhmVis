@@ -3,7 +3,6 @@
 #' Compare mHM modeled and observed streamflow
 #'
 #' @return invisible List with qout (data.frame), days (Date), NSE and KGE (numbers)
-#' @encoding UTF-8
 #' @note na.strings may not yet always be recognized correctly.
 #' @author Berry Boessenkool, \email{berry-b@@gmx.de}, Feb 2017
 #' @seealso \code{\link{pdf_png}}
