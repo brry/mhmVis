@@ -4,7 +4,7 @@
 #'
 #' @return \code{\link{colPoints}} list output
 #' @author Berry Boessenkool, \email{berry-b@@gmx.de}, Feb 2017
-#' @seealso \code{\link{read_nc}}, \code{\link{colPoints}}
+#' @seealso \code{\link{read_nc}}, \code{\link{get_ncPoint}}, \code{\link{colPoints}}
 #' @keywords hplot
 #' @importFrom RColorBrewer brewer.pal
 #' @importFrom berryFunctions colPoints

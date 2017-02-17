@@ -5,7 +5,7 @@
 #' @return List with time, lat, lon, var, varname, file
 #' @section Warning: This has not yet been tested on many nc files! Please report any errors.
 #' @author Berry Boessenkool, \email{berry-b@@gmx.de}, Feb 2017
-#' @seealso \code{\link{help}}
+#' @seealso \code{\link{vis_nc}}, \code{\link{get_ncPoint}}
 #' @keywords list spatial
 #' @importFrom ncdf4 nc_open ncvar_get
 #' @importFrom berryFunctions removeSpace

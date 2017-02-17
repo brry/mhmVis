@@ -44,7 +44,7 @@ Visualize NETCDF object
 
 }
 \seealso{
-\code{\link{read_nc}}, \code{\link{colPoints}}
+\code{\link{read_nc}}, \code{\link{get_ncPoint}}, \code{\link{colPoints}}
 }
 \author{
 Berry Boessenkool, \email{berry-b@gmx.de}, Feb 2017

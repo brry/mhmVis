@@ -31,7 +31,7 @@ Read NETCDF file and extract time, location and a variable from it.
 
 }
 \seealso{
-\code{\link{help}}
+\code{\link{vis_nc}}, \code{\link{get_ncPoint}}
 }
 \author{
 Berry Boessenkool, \email{berry-b@gmx.de}, Feb 2017
