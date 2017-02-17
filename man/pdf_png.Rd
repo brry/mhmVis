@@ -28,8 +28,13 @@ DEFAULT: inches ("in"), 500 ppi}
 Nothing, but opens a pdf or png device if either pdf or png is TRUE.
 }
 \description{
-graph output file management.
-Do not forget to close device again with code like \code{if(pdf|png) dev.off()}
+Graph output file management.
+Do not forget to close the graphics device again with code like \code{if(pdf|png) dev.off()}\.cr
+PDFs are vector graphics and nicely zoomable and thus the default for
+\code{\link{vis_discharge}}. \cr
+PNGs are pixely raster graphics but may have a much smaller file size.
+They are better suited for spatial grids and thus the default in
+\code{\link{vis_asc}} and \code{\link{vis_dem}}.
 }
 \examples{
 
