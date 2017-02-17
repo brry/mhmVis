@@ -4,7 +4,7 @@
 #'
 #' @return asc matrix
 #' @author Berry Boessenkool, \email{berry-b@@gmx.de}, Feb 2017
-#' @seealso \code{\link{help}}
+#' @seealso \code{\link{vis_dem}}
 #' @keywords hplot color spatial
 #' @importFrom berryFunctions colPointsLegend seqPal
 #' @importFrom graphics par image
@@ -15,9 +15,11 @@
 #' @param file    name of file. DEFAULT: \code{\link{file.choose}}
 #' @param pdf,png Save output to disc? See \code{\link{pdf_png}}.
 #'                DEFAULT: PDF=FALSE, png=TRUE
-#' @param col     Color palette. DEFAULT: \code{berryFunctions::\link[berryFunctions]{seqPal}(100)}
+#' @param col     Color palette. DEFAULT:
+#'                \code{berryFunctions::\link[berryFunctions]{seqPal}(100)}
 #' @param bg      Graph background color. DEFAULT: "grey"
-#' @param \dots Further arguments passed to \code{berryFunctions::\link[berryFunctions]{colPointsLegend}}
+#' @param \dots   Further arguments passed to
+#'                \code{berryFunctions::\link[berryFunctions]{colPointsLegend}}
 #'
 vis_asc <- function(
  file=file.choose(),

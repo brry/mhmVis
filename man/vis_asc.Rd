@@ -13,11 +13,13 @@ vis_asc(file = file.choose(), pdf = FALSE, png = TRUE,
 \item{pdf, png}{Save output to disc? See \code{\link{pdf_png}}.
 DEFAULT: PDF=FALSE, png=TRUE}
 
-\item{col}{Color palette. DEFAULT: \code{berryFunctions::\link[berryFunctions]{seqPal}(100)}}
+\item{col}{Color palette. DEFAULT:
+\code{berryFunctions::\link[berryFunctions]{seqPal}(100)}}
 
 \item{bg}{Graph background color. DEFAULT: "grey"}
 
-\item{\dots}{Further arguments passed to \code{berryFunctions::\link[berryFunctions]{colPointsLegend}}}
+\item{\dots}{Further arguments passed to
+\code{berryFunctions::\link[berryFunctions]{colPointsLegend}}}
 }
 \value{
 asc matrix
