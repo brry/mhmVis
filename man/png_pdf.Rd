@@ -12,13 +12,15 @@ png_pdf(file, pdf = FALSE, png = FALSE, width = 7, height = 5,
 _1 will be appended, see \code{\link[berryFunctions]{newFilename}}.}
 
 \item{pdf}{Write plots created after calling this function into PDF
-instead of R graphics device?}
+instead of R graphics device? DEFAULT: FALSE}
 
-\item{png}{Ditto for PNG. Set either to TRUE, but not both (will stop with an error).}
+\item{png}{Ditto for PNG. Set either to TRUE, but not both
+(will stop with an error). DEFAULT: FALSE}
 
-\item{width, height}{Graph dimensions.}
+\item{width, height}{Graph dimensions. DEFAULT: 7x5 inches}
 
-\item{units, res}{Graph quality arguments passed only to \code{\link{png}}.}
+\item{units, res}{Graph quality arguments passed only to \code{\link{png}}.
+DEFAULT: inches ("in"), 500 ppi}
 
 \item{\dots}{Further arguments passed to \code{\link{pdf}} or \code{\link{png}}}
 }

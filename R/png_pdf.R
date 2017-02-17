@@ -20,10 +20,12 @@
 #' @param file         filename without pdf/png extension. Files will never be overwritten,
 #'                     _1 will be appended, see \code{\link[berryFunctions]{newFilename}}.
 #' @param pdf          Write plots created after calling this function into PDF
-#'                     instead of R graphics device?
-#' @param png          Ditto for PNG. Set either to TRUE, but not both (will stop with an error).
-#' @param width,height Graph dimensions.
+#'                     instead of R graphics device? DEFAULT: FALSE
+#' @param png          Ditto for PNG. Set either to TRUE, but not both
+#'                     (will stop with an error). DEFAULT: FALSE
+#' @param width,height Graph dimensions. DEFAULT: 7x5 inches
 #' @param units,res    Graph quality arguments passed only to \code{\link{png}}.
+#'                     DEFAULT: inches ("in"), 500 ppi
 #' @param \dots        Further arguments passed to \code{\link{pdf}} or \code{\link{png}}
 #'
 #  ----
