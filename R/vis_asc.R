@@ -12,7 +12,7 @@
 #' @examples
 #' # to be added
 #'
-#' @param file    name of file. DEFAULT: \code{\link{file.choose}}
+#' @param file    name of file. DEFAULT: \code{\link{file.choose}()}
 #' @param pdf,png Save output to disc? See \code{\link{pdf_png}}.
 #'                DEFAULT: PDF=FALSE, png=TRUE
 #' @param col     Color palette. DEFAULT:

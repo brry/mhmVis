@@ -16,7 +16,7 @@
 #' # to be added
 #'
 #' @param file    name of mHM output file like "some/path/output/daily_discharge.out".
-#'                DEFAULT: \code{\link{file.choose}}
+#'                DEFAULT: \code{\link{file.choose}()}
 #' @param ylab    Y axis label. DEFAULT: "Discharge  [m^3/s]"
 #' @param pdf,png Save output to disc? See \code{\link{pdf_png}}.
 #'                DEFAULT: PDF=TRUE, png=FALSE

@@ -9,7 +9,7 @@ vis_dem(inpath = choose.dir(), pdf = FALSE, png = TRUE,
 }
 \arguments{
 \item{inpath}{directory containing mHM input files "dem.asc" and "facc.asc".
-DEFAULT: \code{\link{choose.dir}}}
+DEFAULT: \code{\link{choose.dir}()}}
 
 \item{pdf, png}{Save output to disc? See \code{\link{pdf_png}}.
 DEFAULT: PDF=FALSE, png=TRUE}

@@ -15,7 +15,7 @@
 #' # to be added
 #'
 #' @param inpath  directory containing mHM input files "dem.asc" and "facc.asc".
-#'                DEFAULT: \code{\link{choose.dir}}
+#'                DEFAULT: \code{\link{choose.dir}()}
 #' @param pdf,png Save output to disc? See \code{\link{pdf_png}}.
 #'                DEFAULT: PDF=FALSE, png=TRUE
 #' @param col     Color palette. DEFAULT: \code{\link{terrain.colors}(100)}
