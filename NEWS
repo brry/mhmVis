@@ -1,0 +1,16 @@
+
+mhmVis package by Berry Boessenkool, berry-b@gmx.de
+
+ToDo list:
+- vis_discharge: one page per gauge if pdf=TRUE
+- vis_discharge: check na.strings for several files
+- vis_discharge: use more versatile monthAxis function
+- include examples from mHM test_basins
+
+
+Development history:
+
+2017-02-17 Initial release as package on github with png_pdf, vis_discharge
+2017-02-xx First functions written
+2017-01-09 mHM Tutorial at UFZ
+
