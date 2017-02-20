@@ -4,19 +4,19 @@
 \alias{vis_nc}
 \title{Visualize NETCDF file}
 \usage{
-vis_nc(nc, vals = nc$var[, , 1], zlab = deparse(substitute(vals)),
-  add = FALSE, pch = 15, cex = 1.25, col = seqPal(100, colors =
-  RColorBrewer::brewer.pal(9, "OrRd")), x = as.vector(nc$lon),
-  y = as.vector(nc$lat), z = as.vector(vals), legargs = list(bg = NA),
-  ...)
+vis_nc(nc, index = 1, x = as.vector(nc$lon), y = as.vector(nc$lat),
+  z = as.vector(nc$var[, , index]), zlab = paste(nc$varname,
+  nc$time[index]), add = FALSE, pch = 15, cex = 1.25, col = seqPal(100,
+  colors = RColorBrewer::brewer.pal(9, "OrRd")), legargs = list(bg = NA), ...)
 }
 \arguments{
 \item{nc}{nc object from \code{\link{read_nc}}}
 
-\item{vals}{Subset of \code{nc$var}iable values to be plotted.
-DEFAULT: first slice over time.}
+\item{index}{Integer: time slice number to be plotted. DEFAULT: 1}
 
-\item{zlab}{Legend title. DEFAULT: deparse(substitute(vals))}
+\item{x, y, z}{x,y,z Coordinates. DEFAULT: nc elements lon, lat, var (@ time index)}
+
+\item{zlab}{Legend title. DEFAULT: varname time}
 
 \item{add}{Logical: add to existing plot? DEFAULT: FALSE}
 
@@ -24,8 +24,6 @@ DEFAULT: first slice over time.}
 
 \item{col}{Color palette. DEFAULT: \code{berryFunctions::\link[berryFunctions]{seqPal}}
 using colors from \code{RColorBrewer::\link[RColorBrewer]{brewer.pal}(9, "OrRd")}}
-
-\item{x, y, z}{x,y,z Coordinates. DEFAULT: nc elements lon and lat, \code{vals}}
 
 \item{legargs}{List of arguments passed to
 \code{berryFunctions::\link[berryFunctions]{colPointsLegend}}}

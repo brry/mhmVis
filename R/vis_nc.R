@@ -13,14 +13,13 @@
 #' # to be added
 #'
 #' @param nc      nc object from \code{\link{read_nc}}
-#' @param vals    Subset of \code{nc$var}iable values to be plotted.
-#'                DEFAULT: first slice over time.
-#' @param zlab    Legend title. DEFAULT: deparse(substitute(vals))
+#' @param index   Integer: time slice number to be plotted. DEFAULT: 1
+#' @param x,y,z   x,y,z Coordinates. DEFAULT: nc elements lon, lat, var (@@ time index)
+#' @param zlab    Legend title. DEFAULT: varname time
 #' @param add     Logical: add to existing plot? DEFAULT: FALSE
 #' @param pch,cex Point character and character expansion (symbol size). DEFAULT: 15, 1.25
 #' @param col     Color palette. DEFAULT: \code{berryFunctions::\link[berryFunctions]{seqPal}}
 #'                using colors from \code{RColorBrewer::\link[RColorBrewer]{brewer.pal}(9, "OrRd")}
-#' @param x,y,z   x,y,z Coordinates. DEFAULT: nc elements lon and lat, \code{vals}
 #' @param legargs List of arguments passed to
 #'                \code{berryFunctions::\link[berryFunctions]{colPointsLegend}}
 #' @param \dots   Further arguments passed to
@@ -28,15 +27,15 @@
 #'
 vis_nc <- function(
  nc,
- vals=nc$var[,,1],
- zlab=deparse(substitute(vals)),
+ index=1,
+ x=as.vector(nc$lon),
+ y=as.vector(nc$lat),
+ z=as.vector(nc$var[,,index]),
+ zlab=paste(nc$varname, nc$time[index]),
  add=FALSE,
  pch=15,
  cex=1.25,
  col=seqPal(100, colors=RColorBrewer::brewer.pal(9, "OrRd")),
- x=as.vector(nc$lon),
- y=as.vector(nc$lat),
- z=as.vector(vals),
  legargs=list(bg=NA),
  ...
 )
