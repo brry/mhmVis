@@ -1,10 +1,11 @@
 #' Visualize NETCDF file
 #'
-#' Visualize NETCDF object
+#' Visualize a single time slice of a NETCDF object
 #'
 #' @return \code{\link{colPoints}} list output
 #' @author Berry Boessenkool, \email{berry-b@@gmx.de}, Feb 2017
-#' @seealso \code{\link{read_nc}}, \code{\link{get_ncPoint}}, \code{\link{colPoints}}
+#' @seealso \code{\link{read_nc}}, \code{\link{vis_nc_all}} for several time slices,
+#'          \code{\link{get_ncPoint}}, \code{\link{colPoints}}
 #' @keywords hplot
 #' @importFrom RColorBrewer brewer.pal
 #' @importFrom berryFunctions colPoints
@@ -13,7 +14,8 @@
 #' # to be added
 #'
 #' @param nc      nc object from \code{\link{read_nc}}
-#' @param index   Integer: time slice number to be plotted. DEFAULT: 1
+#' @param index   Integer: a single time slice number to be plotted.
+#'                To plot several slices, use \code{\link{vis_nc_all}}. DEFAULT: 1
 #' @param x,y,z   x,y,z Coordinates. DEFAULT: nc elements lon, lat, var (@@ time index)
 #' @param zlab    Legend title. DEFAULT: varname time
 #' @param add     Logical: add to existing plot? DEFAULT: FALSE

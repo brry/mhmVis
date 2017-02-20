@@ -12,7 +12,8 @@ vis_nc(nc, index = 1, x = as.vector(nc$lon), y = as.vector(nc$lat),
 \arguments{
 \item{nc}{nc object from \code{\link{read_nc}}}
 
-\item{index}{Integer: time slice number to be plotted. DEFAULT: 1}
+\item{index}{Integer: a single time slice number to be plotted.
+To plot several slices, use \code{\link{vis_nc_all}}. DEFAULT: 1}
 
 \item{x, y, z}{x,y,z Coordinates. DEFAULT: nc elements lon, lat, var (@ time index)}
 
@@ -35,14 +36,15 @@ using colors from \code{RColorBrewer::\link[RColorBrewer]{brewer.pal}(9, "OrRd")
 \code{\link{colPoints}} list output
 }
 \description{
-Visualize NETCDF object
+Visualize a single time slice of a NETCDF object
 }
 \examples{
 # to be added
 
 }
 \seealso{
-\code{\link{read_nc}}, \code{\link{get_ncPoint}}, \code{\link{colPoints}}
+\code{\link{read_nc}}, \code{\link{vis_nc_all}} for several time slices,
+         \code{\link{get_ncPoint}}, \code{\link{colPoints}}
 }
 \author{
 Berry Boessenkool, \email{berry-b@gmx.de}, Feb 2017
