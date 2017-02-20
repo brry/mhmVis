@@ -4,20 +4,24 @@
 \alias{read_nc}
 \title{Read NETCDF file}
 \usage{
-read_nc(file = file.choose(), var = "", ...)
+read_nc(file = file.choose(), var = "", latvar = "lat", lonvar = "lon",
+  ...)
 }
 \arguments{
 \item{file}{Name of nc file. May include relative or absolute path.
 DEFAULT: \code{\link{file.choose}()}}
 
-\item{var}{Name of variable to extract, interactive choice if \code{var=""}
-and there are more than 1 variables in the file.}
+\item{var}{Name of variable to extract, interactive choice if \code{var} not
+available and there are more than 1 variables in the file. DEFAULT: ""}
+
+\item{latvar, lonvar}{Name of latitude and longitude variables. DEFAULT: "lat","lon"}
 
 \item{\dots}{Further arguments passed to \code{ncdf4::\link[ncdf4]{nc_open}},
 like verbose=TRUE}
 }
 \value{
-List with time, lat, lon, var, varname, file
+List with time, lat, lon, var, varname, file, cdf (result of
+\code{ncdf4::\link[ncdf4]{nc_open}}, from which the previous elements are extracted.)
 }
 \description{
 Read NETCDF file and extract time, location and a variable from it.
