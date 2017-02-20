@@ -16,7 +16,7 @@ get_ncPoint(nc, n = 1, plot = FALSE, ...)
 \item{\dots}{Further arguments passed to \code{\link{identify}}}
 }
 \value{
-matrix with
+data.frame with \code{n} rows and 3 columns (index, row, col)
 }
 \description{
 Get coordinates of a point (or several points) in an nc plot

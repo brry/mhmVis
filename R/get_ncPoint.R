@@ -2,7 +2,7 @@
 #'
 #' Get coordinates of a point (or several points) in an nc plot
 #'
-#' @return matrix with
+#' @return data.frame with \code{n} rows and 3 columns (index, row, col)
 #' @author Berry Boessenkool, \email{berry-b@@gmx.de}, Feb 2017
 #' @seealso \code{\link{read_nc}}, \code{\link{vis_nc}}
 #' @keywords iplot
@@ -28,5 +28,6 @@ get_ncPoint <- function(
                                     nc$lat==nc$lat[k], arr.ind=TRUE))
  out <- t(out)
  colnames(out) <- c("row", "col")
- cbind(index=i, out)
+ out <- cbind(index=i, out)
+ as.data.frame(out)
 }
