@@ -1,6 +1,8 @@
 #' Visualize NETCDF file
 #'
-#' Visualize a single time slice of a NETCDF object
+#' Visualize a single time slice of a NETCDF object.
+#' If you want to project correctly, use OSMscale as in the example below.
+#' (\url{https://github.com/brry/OSMscale#intro}).
 #'
 #' @return \code{\link{colPoints}} list output
 #' @author Berry Boessenkool, \email{berry-b@@gmx.de}, Feb 2017
@@ -13,6 +15,15 @@
 #' @export
 #' @examples
 #' # to be added
+#'
+#' \dontrun{ # too time consuming for CRAN checks
+#' # install.packages("OSMscale)
+#' library(OSMscale)
+#' map <- pointsMap(nc$lat, nc$lon)
+#' pp <- projectPoints(as.vector(nc$lat), as.vector(nc$lon), to=posm())
+#' plot(map); scaleBar(map)
+#' vis_nc(nc, x=pp$x, y=pp$y, add=TRUE)
+#' }
 #'
 #' @param nc      nc object from \code{\link{read_nc}}
 #' @param index   Integer: a single time slice number to be plotted.

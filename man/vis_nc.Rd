@@ -39,10 +39,21 @@ using colors from \code{RColorBrewer::\link[RColorBrewer]{brewer.pal}(9, "OrRd")
 \code{\link{colPoints}} list output
 }
 \description{
-Visualize a single time slice of a NETCDF object
+Visualize a single time slice of a NETCDF object.
+If you want to project correctly, use OSMscale as in the example below.
+(\url{https://github.com/brry/OSMscale#intro}).
 }
 \examples{
 # to be added
+
+\dontrun{ # too time consuming for CRAN checks
+# install.packages("OSMscale)
+library(OSMscale)
+map <- pointsMap(nc$lat, nc$lon)
+pp <- projectPoints(as.vector(nc$lat), as.vector(nc$lon), to=posm())
+plot(map); scaleBar(map)
+vis_nc(nc, x=pp$x, y=pp$y, add=TRUE)
+}
 
 }
 \seealso{
