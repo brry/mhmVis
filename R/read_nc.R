@@ -65,7 +65,7 @@ while(! lon %in% varnames)
  if("lon2D" %in% varnames) var <- "lon2D" else
  lon <- readline(paste0("Which longitude variable do you want? (",toString(varnames),"): "))
 }
-message("nc file has ben read. Now extracting ", toString(lat,lon,var), ". This may take a minute.")
+message("nc file has been read. Now extracting ", toString(c(lat,lon,var)), ". This may take a minute.")
 # Actually extract the desired variables:
 LAT <- ncdf4::ncvar_get(mycdf, lat)
 LON <- ncdf4::ncvar_get(mycdf, lon)
