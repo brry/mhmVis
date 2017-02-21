@@ -73,3 +73,40 @@ VAR <- ncdf4::ncvar_get(mycdf, var)  # may take quite some to actually load into
 # output:
 return(invisible(list(time=time, lat=LAT, lon=LON, var=VAR, varname=var, file=mycdf$filename, cdf=mycdf)))
 }
+
+
+if(FALSE){# generate random field nc object
+
+n <- 50; nt=30 # number of cells in x and y direction, number of time steps
+xy <- expand.grid(1:n, 1:n) ; names(xy) <- c('x','y')
+StartVal <- rep(0,n^2)  ; StartVal[3/4*(n^2+n)] <- 1
+xyz <- spate::spate.sim(par=c(rho0=0.05, sigma2=0.7^2, zeta=-log(0.99), rho1=0.06,
+                            gamma=3 ,alpha=pi/4, muX=-0.05, muY=-0.1, tau2=0.00001),
+                        n=n, T=nt+1, StartVal=StartVal, seed=1)$xi[-1,]
+#spate::spate.plot(xyz)
+xyz <- round((xyz-min(xyz))*10)
+# for(i in 1:nrow(xyz)) colPoints(xy$x, xy$y, xyz[i,], add=F, pch=15, Range=range(xyz), main=i)
+xyz <- t(xyz)  ;  dim(xyz) <- c(n,n,nt)
+#
+random_nc <- list(
+time = strptime("2017-02-21 13:00:00", format="%F %T")+(1:nrow(xyz))*3600,
+lon = matrix(xy$x, ncol=n),
+lat = matrix(xy$y, ncol=n),
+var = xyz,
+varname = "random_field",
+file = "spate_spate.sim",
+cdf = "This is a list in real read_nc results")
+rm(n,nt,xy,StartVal,xyz)
+
+
+vis_nc_film(random_nc, cex=2.8, y2=0.95, asp=1, test=FALSE, ff=ffberry)
+
+
+#library(SpatioTemporal) ##simulate.STmodel
+# http://santiago.begueria.es/2010/10/generating-spatially-correlated-random-fields-with-r/
+#library(gstat)
+#xyz <- predict(gstat(formula=z~1, locations=~x+y, dummy=T, beta=1,
+#                 model=vgm(psill=0.025, range=5, model='Exp'), nmax=20), newdata=xy, nsim=1)
+#colPoints(x,y,sim1, data=xyz, add=FALSE, pch=15)
+
+}
