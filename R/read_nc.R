@@ -66,10 +66,13 @@ while(! lon %in% varnames)
  lon <- readline(paste0("Which longitude variable do you want? (",toString(varnames),"): "))
 }
 message("nc file has been read. Now extracting ", toString(c(lat,lon,var)), ". This may take a minute.")
+strt <- Sys.time()
 # Actually extract the desired variables:
 LAT <- ncdf4::ncvar_get(mycdf, lat)
 LON <- ncdf4::ncvar_get(mycdf, lon)
-VAR <- ncdf4::ncvar_get(mycdf, var)  # may take quite some to actually load into memory
+VAR <- ncdf4::ncvar_get(mycdf, var)  # may take quite some time to actually load into memory
+d <- difftime(Sys.time(), strt)
+message("I'm done! (took ", round(d,2), " ", attr(d,"units"),")")
 # output:
 return(invisible(list(time=time, lat=LAT, lon=LON, var=VAR, varname=var, file=mycdf$filename, cdf=mycdf)))
 }
