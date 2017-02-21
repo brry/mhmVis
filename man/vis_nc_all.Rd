@@ -5,7 +5,7 @@
 \title{Visualize NETCDF file}
 \usage{
 vis_nc_all(nc, index = seq_along(nc$time), Range = range(nc$var, na.rm =
-  TRUE), ...)
+  TRUE), expr = NULL, ...)
 }
 \arguments{
 \item{nc}{nc object from \code{\link{read_nc}}}
@@ -19,6 +19,12 @@ DEFAULT: seq_along(nc$time)}
 \item{Range}{Range of values, passed to \code{\link{colPoints}}. Use
 \code{Range=NULL} to have an individually fitted range for each time slice.
 DEFAULT: range(nc$var, na.rm=TRUE)}
+
+\item{expr}{Expression (potentially several lines wrapped in curly braces)
+To be executed after each call of \code{\link{vis_nc}},
+like statements using axis, title, mtext etc. Can include
+references to current \code{index} value at each time step.
+DEFAULT: NULL}
 
 \item{\dots}{Further arguments passed to \code{\link{vis_nc}}.
 You likely do not want to mess with z!}
@@ -34,7 +40,7 @@ Visualize several (or even all) time slices of a NETCDF object
 
 }
 \seealso{
-\code{\link{vis_nc}}
+\code{\link{vis_nc}}, \code{\link{vis_nc_film}} to create an animated movie
 }
 \author{
 Berry Boessenkool, \email{berry-b@gmx.de}, Feb 2017

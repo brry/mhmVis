@@ -7,7 +7,8 @@
 vis_nc(nc, index = 1, x = as.vector(nc$lon), y = as.vector(nc$lat),
   z = as.vector(nc$var[, , index]), zlab = paste(nc$varname,
   nc$time[index]), add = FALSE, pch = 15, cex = 1.25, col = seqPal(100,
-  colors = RColorBrewer::brewer.pal(9, "OrRd")), legargs = list(bg = NA), ...)
+  colors = RColorBrewer::brewer.pal(9, "OrRd")), bg.leg = NA, cex.leg = 1,
+  legargs = NULL, ...)
 }
 \arguments{
 \item{nc}{nc object from \code{\link{read_nc}}}
@@ -26,8 +27,10 @@ To plot several slices, use \code{\link{vis_nc_all}}. DEFAULT: 1}
 \item{col}{Color palette. DEFAULT: \code{berryFunctions::\link[berryFunctions]{seqPal}}
 using colors from \code{RColorBrewer::\link[RColorBrewer]{brewer.pal}(9, "OrRd")}}
 
-\item{legargs}{List of arguments passed to
-\code{berryFunctions::\link[berryFunctions]{colPointsLegend}}}
+\item{bg.leg, cex.leg}{Background and character size for legend. DEFAULT: NA, 1}
+
+\item{legargs}{List of further arguments passed to legend (
+\code{berryFunctions::\link[berryFunctions]{colPointsLegend}})}
 
 \item{\dots}{Further arguments passed to
 \code{berryFunctions::\link[berryFunctions]{colPoints}}}
@@ -43,7 +46,8 @@ Visualize a single time slice of a NETCDF object
 
 }
 \seealso{
-\code{\link{read_nc}}, \code{\link{vis_nc_all}} for several time slices,
+\code{\link{read_nc}},
+         \code{\link{vis_nc_all}} and \code{\link{vis_nc_film}} for several time slices,
          \code{\link{get_ncPoint}}, \code{\link{colPoints}}
 }
 \author{

@@ -4,7 +4,7 @@
 #'
 #' @return list of \code{\link{colPoints}} list outputs
 #' @author Berry Boessenkool, \email{berry-b@@gmx.de}, Feb 2017
-#' @seealso \code{\link{vis_nc}}
+#' @seealso \code{\link{vis_nc}}, \code{\link{vis_nc_film}} to create an animated movie
 #' @keywords hplot
 #' @importFrom pbapply pblapply
 #' @export
@@ -20,6 +20,11 @@
 #' @param Range   Range of values, passed to \code{\link{colPoints}}. Use
 #'                \code{Range=NULL} to have an individually fitted range for each time slice.
 #'                DEFAULT: range(nc$var, na.rm=TRUE)
+#' @param expr    Expression (potentially several lines wrapped in curly braces)
+#'                To be executed after each call of \code{\link{vis_nc}},
+#'                like statements using axis, title, mtext etc. Can include
+#'                references to current \code{index} value at each time step.
+#'                DEFAULT: NULL
 #' @param \dots   Further arguments passed to \code{\link{vis_nc}}.
 #'                You likely do not want to mess with z!
 #'
@@ -27,10 +32,17 @@ vis_nc_all <- function(
  nc,
  index=seq_along(nc$time),
  Range=range(nc$var, na.rm=TRUE),
+ expr=NULL,
  ...
 )
 {
  index <- index[index<=length(nc$time)]
- out <- pbapply::pblapply(index, vis_nc, nc=nc, Range=Range, ...)
+ expr2 <- substitute(expr)
+ out <- pbapply::pblapply(index, function(index)
+   {
+   output <- vis_nc(nc=nc, index=index, Range=Range, ...)
+   eval(expr2)
+   output
+   })
  return(invisible(out))
 }

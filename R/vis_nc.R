@@ -4,11 +4,12 @@
 #'
 #' @return \code{\link{colPoints}} list output
 #' @author Berry Boessenkool, \email{berry-b@@gmx.de}, Feb 2017
-#' @seealso \code{\link{read_nc}}, \code{\link{vis_nc_all}} for several time slices,
+#' @seealso \code{\link{read_nc}},
+#'          \code{\link{vis_nc_all}} and \code{\link{vis_nc_film}} for several time slices,
 #'          \code{\link{get_ncPoint}}, \code{\link{colPoints}}
 #' @keywords hplot
 #' @importFrom RColorBrewer brewer.pal
-#' @importFrom berryFunctions colPoints
+#' @importFrom berryFunctions colPoints owa
 #' @export
 #' @examples
 #' # to be added
@@ -22,8 +23,9 @@
 #' @param pch,cex Point character and character expansion (symbol size). DEFAULT: 15, 1.25
 #' @param col     Color palette. DEFAULT: \code{berryFunctions::\link[berryFunctions]{seqPal}}
 #'                using colors from \code{RColorBrewer::\link[RColorBrewer]{brewer.pal}(9, "OrRd")}
-#' @param legargs List of arguments passed to
-#'                \code{berryFunctions::\link[berryFunctions]{colPointsLegend}}
+#' @param bg.leg,cex.leg Background and character size for legend. DEFAULT: NA, 1
+#' @param legargs List of further arguments passed to legend (
+#'                \code{berryFunctions::\link[berryFunctions]{colPointsLegend}})
 #' @param \dots   Further arguments passed to
 #'                \code{berryFunctions::\link[berryFunctions]{colPoints}}
 #'
@@ -38,11 +40,13 @@ vis_nc <- function(
  pch=15,
  cex=1.25,
  col=seqPal(100, colors=RColorBrewer::brewer.pal(9, "OrRd")),
- legargs=list(bg=NA),
+ bg.leg=NA,
+ cex.leg=1,
+ legargs=NULL,
  ...
 )
 {
  #force(zlab)
  colPoints(x=x,y=y,z=z, add=add, col=col, xlab="", ylab="", zlab=zlab,
-           pch=pch, cex=cex, legargs=legargs, ...)
+           pch=pch, cex=cex, legargs=owa(list(bg=bg.leg,cex=cex.leg),legargs), ...)
 }
