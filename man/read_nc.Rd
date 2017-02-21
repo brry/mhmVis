@@ -4,8 +4,7 @@
 \alias{read_nc}
 \title{Read NETCDF file}
 \usage{
-read_nc(file = file.choose(), var = "", latvar = "lat", lonvar = "lon",
-  ...)
+read_nc(file = file.choose(), var = "", lat = "lat", lon = "lon", ...)
 }
 \arguments{
 \item{file}{Name of nc file. May include relative or absolute path.
@@ -14,7 +13,7 @@ DEFAULT: \code{\link{file.choose}()}}
 \item{var}{Name of variable to extract, interactive choice if \code{var} not
 available and there are more than 1 variables in the file. DEFAULT: ""}
 
-\item{latvar, lonvar}{Name of latitude and longitude variables. DEFAULT: "lat","lon"}
+\item{lat, lon}{Name of latitude and longitude variables. DEFAULT: "lat","lon"}
 
 \item{\dots}{Further arguments passed to \code{ncdf4::\link[ncdf4]{nc_open}},
 like verbose=TRUE}

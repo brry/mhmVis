@@ -18,15 +18,15 @@
 #'              DEFAULT: \code{\link{file.choose}()}
 #' @param var   Name of variable to extract, interactive choice if \code{var} not
 #'              available and there are more than 1 variables in the file. DEFAULT: ""
-#' @param latvar,lonvar Name of latitude and longitude variables. DEFAULT: "lat","lon"
+#' @param lat,lon Name of latitude and longitude variables. DEFAULT: "lat","lon"
 #' @param \dots Further arguments passed to \code{ncdf4::\link[ncdf4]{nc_open}},
 #'              like verbose=TRUE
 #'
 read_nc <- function(
 file=file.choose(),
 var="",
-latvar="lat",
-lonvar="lon",
+lat="lat",
+lon="lon",
 ...
 )
 {
@@ -53,22 +53,23 @@ while(! var %in% varnames)
  var <- readline(paste0("Which variable do you want? (",toString(pos),"): "))
 }
 # Select latitude and longitude variables:
-latvar <- "lat"
-lonvar <- "lon"
-while(! latvar %in% varnames)
+lat <- "lat"
+lon <- "lon"
+while(! lat %in% varnames)
 {
  if("lat2D" %in% varnames) var <- "lat2D" else
- latvar <- readline(paste0("Which latitude variable do you want? (",toString(varnames),"): "))
+ lat <- readline(paste0("Which latitude variable do you want? (",toString(varnames),"): "))
 }
-while(! lonvar %in% varnames)
+while(! lon %in% varnames)
 {
  if("lon2D" %in% varnames) var <- "lon2D" else
- lonvar <- readline(paste0("Which longitude variable do you want? (",toString(varnames),"): "))
+ lon <- readline(paste0("Which longitude variable do you want? (",toString(varnames),"): "))
 }
+message("nc file has ben read. Now extracting ", toString(lat,lon,var), ". This may take a minute.")
 # Actually extract the desired variables:
-lat <- ncdf4::ncvar_get(mycdf, latvar)
-lon <- ncdf4::ncvar_get(mycdf, lonvar)
-VAR <- ncdf4::ncvar_get(mycdf,    var)  # may take quite some to actually load into memory
+LAT <- ncdf4::ncvar_get(mycdf, lat)
+LON <- ncdf4::ncvar_get(mycdf, lon)
+VAR <- ncdf4::ncvar_get(mycdf, var)  # may take quite some to actually load into memory
 # output:
-return(invisible(list(time=time, lat=lat, lon=lon, var=VAR, varname=var, file=mycdf$filename, cdf=mycdf)))
+return(invisible(list(time=time, lat=LAT, lon=LON, var=VAR, varname=var, file=mycdf$filename, cdf=mycdf)))
 }
