@@ -67,11 +67,12 @@ vis_nc_film <- function(
 )
 {
  if(test) outfile <- paste0(outfile,".png")
- outfile <- berryFunctions::newFilename(outfile)
+ outfile <- berryFunctions::newFilename(outfile, ignore=test, mid="")
  # single png for testing resolution etc
  if(test)
   {
-  warning("Only creating single test image. To create actual video, use test=FALSE.")
+  warning("vis_nc_film is only creating a single test image. ",
+          "To create the actual video, use test=FALSE.",call.=FALSE)
   png(outfile, width=width, height=height)
   do.call(par, owa(list(mar=mar, mgp=mgp, xpd=xpd), parargs))
   output <- vis_nc_all(nc=nc, index=index[1], Range=Range, expr=expr, cex=cex,
