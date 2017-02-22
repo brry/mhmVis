@@ -7,6 +7,7 @@
 #' @seealso \code{\link{vis_nc}}, \code{\link{vis_nc_film}} to create an animated movie
 #' @keywords hplot
 #' @importFrom pbapply pblapply
+#' @importFrom graphics mtext
 #' @export
 #' @examples
 #' # to be added
