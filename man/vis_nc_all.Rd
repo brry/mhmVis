@@ -4,8 +4,8 @@
 \alias{vis_nc_all}
 \title{Visualize NETCDF file}
 \usage{
-vis_nc_all(nc, index = seq_along(nc$time), Range = range(nc$var, na.rm =
-  TRUE), expr = NULL, ...)
+vis_nc_all(nc, index = 1, Range = range(nc$var, na.rm = TRUE),
+  expr = NULL, vlcnote = FALSE, ...)
 }
 \arguments{
 \item{nc}{nc object from \code{\link{read_nc}}}
@@ -13,18 +13,21 @@ vis_nc_all(nc, index = seq_along(nc$time), Range = range(nc$var, na.rm =
 \item{index}{Integer: time slice numbers to be plotted. Will be truncated
 to values actually available. If \code{index} is very long,
 please make sure to be directing the output into a PDF, movie or similar.
+For automated movie generation, see \code{\link{vis_nc_film}}.
 A progress bar will be displayed to estimate remaining time.
-DEFAULT: seq_along(nc$time)}
+DEFAULT: 1}
 
 \item{Range}{Range of values, passed to \code{\link{colPoints}}. Use
 \code{Range=NULL} to have an individually fitted range for each time slice.
 DEFAULT: range(nc$var, na.rm=TRUE)}
 
 \item{expr}{Expression (potentially several lines wrapped in curly braces)
-To be executed after each call of \code{\link{vis_nc}},
+to be executed after each call of \code{\link{vis_nc}},
 like statements using axis, title, mtext etc. Can include
 references to current \code{index} value at each time step.
 DEFAULT: NULL}
+
+\item{vlcnote}{Add VLC instruction note in each frame? DEFAULT: FALSE}
 
 \item{\dots}{Further arguments passed to \code{\link{vis_nc}}.
 You likely do not want to mess with z!}

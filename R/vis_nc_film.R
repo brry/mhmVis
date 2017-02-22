@@ -18,8 +18,9 @@
 #'                 DEFAULT: seq_along(nc$time)
 #' @param Range    Range of values, see \code{\link{vis_nc_all}}.
 #'                 DEFAULT: range(nc$var, na.rm=TRUE)
-#' @param expr     Expression after each call of \code{\link{vis_nc}},
-#'                 see \code{\link{vis_nc_all}}. DEFAULT: NULL
+#' @param vlcnote  Add VLC instruction note in each frame? TO include other
+#'                 information in each frame, use \code{expr},
+#'                 see \code{\link{vis_nc_all}}. DEFAULT: TRUE
 #' @param test     Logical: test the resolution parameters etc by creating a single
 #'                 png file of the first value in \code{index}.
 #'                 This is useful to select useful settings before
@@ -44,7 +45,7 @@ vis_nc_film <- function(
  nc,
  index=seq_along(nc$time),
  Range=range(nc$var, na.rm=TRUE),
- expr=NULL,
+ vlcnote=TRUE,
 
  test=TRUE,
 
@@ -74,19 +75,24 @@ vis_nc_film <- function(
   warning("vis_nc_film is only creating a single test image. ",
           "To create the actual video, use test=FALSE.",call.=FALSE)
   png(outfile, width=width, height=height)
+  on.exit( dev.off() )
   do.call(par, owa(list(mar=mar, mgp=mgp, xpd=xpd), parargs))
-  output <- vis_nc_all(nc=nc, index=index[1], Range=Range, expr=expr, cex=cex,
+  output <- vis_nc_all(nc=nc, index=index[1], Range=Range, vlcnote=vlcnote, cex=cex,
                        cex.axis=cex.axis, cex.leg=cex.leg, bg.leg=bg.leg, ...)
-  dev.off()
   return(invisible(output))
   }
 # regular nontesting case:
 saveVideo(
    {
    do.call(par, owa(list(mar=mar, mgp=mgp, xpd=xpd), parargs))
-             vis_nc_all(nc=nc, index=index, Range=Range, expr=expr, cex=cex,
+             vis_nc_all(nc=nc, index=index, Range=Range, vlcnote=vlcnote, cex=cex,
                         cex.axis=cex.axis, cex.leg=cex.leg, bg.leg=bg.leg, ...)
    },
   video.name=outfile, interval=interval, ffmpeg=ffmpeg,
   ani.width=width, ani.height=height)
 }
+
+#' ffmpeg path on berry's computers
+#' @seealso \code{\link{vis_nc_film}}, where it is defined
+#' @export
+ffberry <- "C:/Program Files/R/ffmpeg/bin/ffmpeg.exe"

@@ -5,7 +5,7 @@
 \title{Visualize NETCDF file}
 \usage{
 vis_nc_film(nc, index = seq_along(nc$time), Range = range(nc$var, na.rm =
-  TRUE), expr = NULL, test = TRUE, outfile = paste0(nc$file, ".mp4"),
+  TRUE), vlcnote = TRUE, test = TRUE, outfile = paste0(nc$file, ".mp4"),
   width = 7 * 200, height = 5 * 200, interval = 0.1,
   ffmpeg = ani.options("ffmpeg"), vidargs = NULL, mar = c(4, 7, 10, 1),
   mgp = c(3, 1.2, 0), xpd = TRUE, parargs = NULL, cex = 1,
@@ -20,8 +20,9 @@ DEFAULT: seq_along(nc$time)}
 \item{Range}{Range of values, see \code{\link{vis_nc_all}}.
 DEFAULT: range(nc$var, na.rm=TRUE)}
 
-\item{expr}{Expression after each call of \code{\link{vis_nc}},
-see \code{\link{vis_nc_all}}. DEFAULT: NULL}
+\item{vlcnote}{Add VLC instruction note in each frame? TO include other
+information in each frame, use \code{expr},
+see \code{\link{vis_nc_all}}. DEFAULT: TRUE}
 
 \item{test}{Logical: test the resolution parameters etc by creating a single
 png file of the first value in \code{index}.
