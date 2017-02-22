@@ -12,6 +12,7 @@
 #' @keywords hplot
 #' @importFrom RColorBrewer brewer.pal
 #' @importFrom berryFunctions colPoints owa
+#' @importFrom pbapply pbapply
 #' @export
 #' @examples
 #' # to be added
@@ -29,6 +30,8 @@
 #' @param index   Integer: a single time slice number to be plotted.
 #'                To plot several slices, use \code{\link{vis_nc_all}}. DEFAULT: 1
 #' @param x,y,z   x,y,z Coordinates. DEFAULT: nc elements lon, lat, var (@@ time index)
+#' @param apply   Function to be applied to aggregate time in nc$var, e.g. mean or median.
+#'                If given, index and z are ignored! Should take na.rm as argument. DEFAULT: NA
 #' @param zlab    Legend title. DEFAULT: varname time
 #' @param add     Logical: add to existing plot? DEFAULT: FALSE
 #' @param pch,cex Point character and character expansion (symbol size). DEFAULT: 15, 1.25
@@ -46,6 +49,7 @@ vis_nc <- function(
  x=as.vector(nc$lon),
  y=as.vector(nc$lat),
  z=as.vector(nc$var[,,index]),
+ apply=NA,
  zlab=paste(nc$varname, nc$time[index]),
  add=FALSE,
  pch=15,
@@ -58,6 +62,11 @@ vis_nc <- function(
 )
 {
  #force(zlab)
+ if(!suppressWarnings(is.na(apply)) )
+   {
+   if(missing(zlab)) zlab <- paste(nc$varname, substitute(apply))
+   z <- as.vector(pbapply(nc$var, 1:2, apply, na.rm=TRUE))
+   }
  colPoints(x=x,y=y,z=z, add=add, col=col, xlab="", ylab="", zlab=zlab,
            pch=pch, cex=cex, legargs=owa(list(bg=bg.leg,cex=cex.leg),legargs), ...)
 }

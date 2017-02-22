@@ -5,7 +5,7 @@
 \title{Visualize NETCDF file}
 \usage{
 vis_nc(nc, index = 1, x = as.vector(nc$lon), y = as.vector(nc$lat),
-  z = as.vector(nc$var[, , index]), zlab = paste(nc$varname,
+  z = as.vector(nc$var[, , index]), apply = NA, zlab = paste(nc$varname,
   nc$time[index]), add = FALSE, pch = 15, cex = 1.25, col = seqPal(100,
   colors = RColorBrewer::brewer.pal(9, "OrRd")), bg.leg = NA, cex.leg = 1,
   legargs = NULL, ...)
@@ -17,6 +17,9 @@ vis_nc(nc, index = 1, x = as.vector(nc$lon), y = as.vector(nc$lat),
 To plot several slices, use \code{\link{vis_nc_all}}. DEFAULT: 1}
 
 \item{x, y, z}{x,y,z Coordinates. DEFAULT: nc elements lon, lat, var (@ time index)}
+
+\item{apply}{Function to be applied to aggregate time in nc$var, e.g. mean or median.
+If given, index and z are ignored! Should take na.rm as argument. DEFAULT: NA}
 
 \item{zlab}{Legend title. DEFAULT: varname time}
 
