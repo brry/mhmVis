@@ -22,7 +22,7 @@ DEFAULT: PDF=FALSE, png=TRUE}
 \code{berryFunctions::\link[berryFunctions]{colPointsLegend}}}
 }
 \value{
-dem matrix
+list with dem + facc matrix and rivcol
 }
 \description{
 Visualize mHM elevation input data: dem (Digital Elevation Model) and

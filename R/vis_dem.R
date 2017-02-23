@@ -3,7 +3,7 @@
 #' Visualize mHM elevation input data: dem (Digital Elevation Model) and
 #' facc (Flow Accumulation, rivers modeled from DEM)
 #'
-#' @return dem matrix
+#' @return list with dem + facc matrix and rivcol
 #' @author Berry Boessenkool, \email{berry-b@@gmx.de}, Feb 2017
 #' @seealso \code{\link{vis_asc}} for plotting any asc file
 #' @keywords hplot color spatial
@@ -46,5 +46,5 @@ vis_dem <- function(
   colPointsLegend(unlist(dem), colors=col, ...)
   if(pdf|png) dev.off()
   # output:
-  return(invisible(dem))
+  return(invisible(list(dem=dem, facc=facc, rivcol=rivcol)))
 }
