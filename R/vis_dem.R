@@ -35,7 +35,7 @@ vis_dem <- function(
    dem <- read.table(file.path(inpath,"dem.asc"),  skip=6, na.strings=-9999)
   facc <- read.table(file.path(inpath,"facc.asc"), skip=6, na.strings=-9999)
   # Plot prep
-  pdf_png(file, pdf, png)
+  pdf_png(file.path(inpath,"dem"), pdf, png)
   # plot dem:
   par(mar=rep(0,4), bg=bg)
   image(t(apply(dem, 2, rev)), col=col, asp=1)
