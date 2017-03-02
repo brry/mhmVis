@@ -85,8 +85,11 @@ vis_dem <- function(
   rivcol <- berryFunctions::seqPal(100, colors=c("lightblue","darkblue"))
   if(plot)
   {
-  pdfdefaults <- list(file=file.path(inpath,"dem"), pdf=pdf, png=png)
-  do.call(pdf_png, berryFunctions::owa(pdfdefaults, pdfargs))
+  if(!add)
+    {
+    pdfdefaults <- list(file=file.path(inpath,"dem"), pdf=pdf, png=png)
+    do.call(pdf_png, berryFunctions::owa(pdfdefaults, pdfargs))
+    }
   # plot dem:
   par(mar=mar, mgp=mgp, bg=bg)
   if(is.na(proj))
@@ -103,7 +106,7 @@ vis_dem <- function(
     berryFunctions::colPoints(xy$x, xy$y, as.vector(facc), col=c(NA, rivcol),
                               pch=pch[2], cex=cex[2], add=TRUE, legend=FALSE, ...)
     }
-  if(pdf|png) dev.off()
+  if(pdf|png) if(!add) dev.off()
   } # end if plot
   # output:
   return(invisible(list(dem=dem, facc=facc, rivcol=rivcol, xy=xy)))
