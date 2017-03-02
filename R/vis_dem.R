@@ -82,7 +82,7 @@ vis_dem <- function(
   facc <- t(apply(facc, 2, rev))
   # Plot prep
   # color for added river lines:
-  rivcol <- berryFunctions::seqPal(100, colors=c("lightblue","darkblue"))
+  rivcol <- c(NA, berryFunctions::seqPal(100, colors=c("lightblue","darkblue")))
   if(plot)
   {
   if(!add)
@@ -95,7 +95,7 @@ vis_dem <- function(
   if(is.na(proj))
     {
     graphics::image(dem,  col=col, asp=1, add=add)
-    graphics::image(facc, col=c(NA, rivcol), add=TRUE )
+    graphics::image(facc, col=rivcol, add=TRUE )
     berryFunctions::colPointsLegend(unlist(dem), colors=col, bg=bg, title="Elevation", ...)
     } else
     {
@@ -103,7 +103,7 @@ vis_dem <- function(
     cex <- rep(cex, length.out=2)
     berryFunctions::colPoints(xy$x, xy$y, as.vector(dem), col=col,
                               pch=pch[1], cex=cex[1], add=add,  legend=FALSE, ...)
-    berryFunctions::colPoints(xy$x, xy$y, as.vector(facc), col=c(NA, rivcol),
+    berryFunctions::colPoints(xy$x, xy$y, as.vector(facc), col=rivcol,
                               pch=pch[2], cex=cex[2], add=TRUE, legend=FALSE, ...)
     berryFunctions::colPointsLegend(unlist(dem), colors=col, bg="transparent", title="Elevation", ...)
     }
