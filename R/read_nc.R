@@ -32,6 +32,11 @@ lon="lon",
 {
 mycdf <- ncdf4::nc_open(file, ...)
 unit <- mycdf$dim$time$units
+if(is.null(unit))
+ {
+ message("Time could not be read from cdf file and is set to 1.")
+ time <- 1
+ } else
 if(substr(unit,1,4)=="days")
  {
  start <- sub("days since", "", unit)
