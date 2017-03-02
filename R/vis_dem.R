@@ -18,6 +18,9 @@
 #'
 #' @param inpath  Directory containing mHM input files "dem.asc" and "facc.asc".
 #'                DEFAULT: \code{\link{choose.dir}()}
+#' @param plot    Logical: should plot be created? If FALSE, files are still read,
+#'                processed and returned. DEFAULT: TRUE
+#' @param add     Logical: add to existing plot? DEFAULT: FALSE
 #' @param pdf,png Save output to disc? See \code{\link{pdf_png}}.
 #'                DEFAULT: PDF=FALSE, png=TRUE
 #' @param col     Color palette. DEFAULT: \code{\link{terrain.colors}(100)}
@@ -38,6 +41,8 @@
 #'
 vis_dem <- function(
  inpath=choose.dir(),
+ plot=TRUE,
+ add=FALSE,
  pdf=FALSE,
  png=TRUE,
  col=terrain.colors(100),
@@ -76,15 +81,17 @@ vis_dem <- function(
   dem  <- t(apply(dem,  2, rev))
   facc <- t(apply(facc, 2, rev))
   # Plot prep
-  pdfdefaults <- list(file=file.path(inpath,"dem"), pdf=pdf, png=png)
-  do.call(pdf_png, berryFunctions::owa(pdfdefaults, pdfargs))
   # color for added river lines:
   rivcol <- berryFunctions::seqPal(100, colors=c("lightblue","darkblue"))
+  if(plot)
+  {
+  pdfdefaults <- list(file=file.path(inpath,"dem"), pdf=pdf, png=png)
+  do.call(pdf_png, berryFunctions::owa(pdfdefaults, pdfargs))
   # plot dem:
   par(mar=mar, mgp=mgp, bg=bg)
   if(is.na(proj))
     {
-    graphics::image(dem,  col=col, asp=1)
+    graphics::image(dem,  col=col, asp=1, add=add)
     graphics::image(facc, col=c(NA, rivcol), add=TRUE )
     berryFunctions::colPointsLegend(unlist(dem), colors=col, bg=bg, title="Elevation", ...)
     } else
@@ -92,11 +99,12 @@ vis_dem <- function(
     pch <- rep(pch, length.out=2)
     cex <- rep(cex, length.out=2)
     berryFunctions::colPoints(xy$x, xy$y, as.vector(dem), col=col, pch=pch[1], cex=cex[1],
-                              legargs=c(bg=bg), add=FALSE, zlab="Elevation", ...)
+                              legargs=c(bg=bg), add=add, zlab="Elevation", ...)
     berryFunctions::colPoints(xy$x, xy$y, as.vector(facc), col=c(NA, rivcol),
                               pch=pch[2], cex=cex[2], add=TRUE, legend=FALSE, ...)
     }
   if(pdf|png) dev.off()
+  } # end if plot
   # output:
-  return(invisible(list(dem=dem, facc=facc, rivcol=rivcol)))
+  return(invisible(list(dem=dem, facc=facc, rivcol=rivcol, xy=xy)))
 }

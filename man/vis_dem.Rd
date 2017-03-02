@@ -4,14 +4,19 @@
 \alias{vis_dem}
 \title{Visualize dem and facc files}
 \usage{
-vis_dem(inpath = choose.dir(), pdf = FALSE, png = TRUE,
-  col = terrain.colors(100), bg = "grey", mar = c(0, 0, 0, 0),
-  mgp = c(3, 0.7, 0), proj = NA, pch = 15, cex = 0.7, pdfargs = NULL,
-  ...)
+vis_dem(inpath = choose.dir(), plot = TRUE, add = FALSE, pdf = FALSE,
+  png = TRUE, col = terrain.colors(100), bg = "grey", mar = c(0, 0, 0,
+  0), mgp = c(3, 0.7, 0), proj = NA, pch = 15, cex = 0.7,
+  pdfargs = NULL, ...)
 }
 \arguments{
 \item{inpath}{Directory containing mHM input files "dem.asc" and "facc.asc".
 DEFAULT: \code{\link{choose.dir}()}}
+
+\item{plot}{Logical: should plot be created? If FALSE, files are still read,
+processed and returned. DEFAULT: TRUE}
+
+\item{add}{Logical: add to existing plot? DEFAULT: FALSE}
 
 \item{pdf, png}{Save output to disc? See \code{\link{pdf_png}}.
 DEFAULT: PDF=FALSE, png=TRUE}
