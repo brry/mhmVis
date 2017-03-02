@@ -5,7 +5,9 @@
 \title{Visualize dem and facc files}
 \usage{
 vis_dem(inpath = choose.dir(), pdf = FALSE, png = TRUE,
-  col = terrain.colors(100), bg = "grey", ...)
+  col = terrain.colors(100), bg = "grey", mar = c(0, 0, 0, 0),
+  mgp = c(3, 0.7, 0), proj = NA, pch = 15, cex = 0.7, pdfargs = NULL,
+  ...)
 }
 \arguments{
 \item{inpath}{Directory containing mHM input files "dem.asc" and "facc.asc".
@@ -18,8 +20,23 @@ DEFAULT: PDF=FALSE, png=TRUE}
 
 \item{bg}{Graph background color. DEFAULT: "grey"}
 
+\item{mar, mgp}{Plot margins and margin placement, see \code{\link{par}}.
+DEFAULT: c(0,0,0,0), c(3,0.7,0)}
+
+\item{proj}{Current projection string. If not NA, coordinates will be converted
+to lat-long coordinates. If \code{proj} is a number, e.g. 3035,
+it will be replaced with the online epsg proj4 from
+\url{http://www.spatialreference.org/ref/epsg/3035/}.
+Note that this may increase plotting time a lot. DEFAULT: NA}
+
+\item{pch, cex}{Point type + size for colPoints if \code{proj} != NA.
+Can each be two values (DEM + FACC separately). DEFAULT: 15, 0.7}
+
+\item{pdfargs}{List of arguments passed to \code{\link{pdf_png}}.}
+
 \item{\dots}{Further arguments passed to
-\code{berryFunctions::\link[berryFunctions]{colPointsLegend}}}
+\code{berryFunctions::\link[berryFunctions]{colPointsLegend}}
+(passed to colPoints first if \code{proj} != NA).}
 }
 \value{
 list with dem + facc matrix and rivcol
