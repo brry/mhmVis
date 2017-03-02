@@ -101,10 +101,11 @@ vis_dem <- function(
     {
     pch <- rep(pch, length.out=2)
     cex <- rep(cex, length.out=2)
-    berryFunctions::colPoints(xy$x, xy$y, as.vector(dem), col=col, pch=pch[1], cex=cex[1],
-                              legargs=c(bg=bg), add=add, zlab="Elevation", ...)
+    berryFunctions::colPoints(xy$x, xy$y, as.vector(dem), col=col,
+                              pch=pch[1], cex=cex[1], add=add,  legend=FALSE, ...)
     berryFunctions::colPoints(xy$x, xy$y, as.vector(facc), col=c(NA, rivcol),
                               pch=pch[2], cex=cex[2], add=TRUE, legend=FALSE, ...)
+    berryFunctions::colPointsLegend(unlist(dem), colors=col, bg="transparent", title="Elevation", ...)
     }
   if(pdf|png) if(!add) dev.off()
   } # end if plot
