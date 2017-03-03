@@ -46,6 +46,7 @@ pdf_png <- function(
  )
 {
   if(pdf & png) stop("png and pdf are both TRUE. Select either one, but not both.")
+  if(!pdf&!png) return(invisible("pdf and png are both FALSE."))
   figpath <- paste0(file, ".", if(pdf) "pdf", if(png) "png")
   # do not overwrite existing files
   figpath <- berryFunctions::newFilename(figpath)
