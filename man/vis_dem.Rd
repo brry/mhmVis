@@ -7,7 +7,7 @@
 vis_dem(inpath = choose.dir(), plot = TRUE, add = FALSE, pdf = FALSE,
   png = TRUE, col = terrain.colors(100), bg = "grey", mar = c(0, 0, 0,
   0), mgp = c(3, 0.7, 0), proj = NA, pch = 15, cex = 0.7,
-  pdfargs = NULL, ...)
+  legend = TRUE, legargs = NULL, pdfargs = NULL, ...)
 }
 \arguments{
 \item{inpath}{Directory containing mHM input files "dem.asc" and "facc.asc".
@@ -37,11 +37,15 @@ Note that this may increase plotting time a lot. DEFAULT: NA}
 \item{pch, cex}{Point type + size for colPoints if \code{proj} != NA.
 Can each be two values (DEM + FACC separately). DEFAULT: 15, 0.7}
 
+\item{legend}{Logical: add \code{\link{colPointsLegend}}? DEFAULT: TRUE}
+
+\item{legargs}{List of arguments passed to \code{\link{colPointsLegend}}.}
+
 \item{pdfargs}{List of arguments passed to \code{\link{pdf_png}}.}
 
-\item{\dots}{Further arguments passed to
-\code{berryFunctions::\link[berryFunctions]{colPointsLegend}}
-(passed to colPoints first if \code{proj} != NA).}
+\item{\dots}{Arguments passed to
+\code{berryFunctions::\link[berryFunctions]{colPoints}}
+if \code{proj} != NA.}
 }
 \value{
 list with dem + facc matrix and rivcol

@@ -34,10 +34,12 @@
 #'                Note that this may increase plotting time a lot. DEFAULT: NA
 #' @param pch,cex Point type + size for colPoints if \code{proj} != NA.
 #'                Can each be two values (DEM + FACC separately). DEFAULT: 15, 0.7
+#' @param legend  Logical: add \code{\link{colPointsLegend}}? DEFAULT: TRUE
+#' @param legargs List of arguments passed to \code{\link{colPointsLegend}}.
 #' @param pdfargs List of arguments passed to \code{\link{pdf_png}}.
-#' @param \dots   Further arguments passed to
-#'                \code{berryFunctions::\link[berryFunctions]{colPointsLegend}}
-#'                (passed to colPoints first if \code{proj} != NA).
+#' @param \dots   Arguments passed to
+#'                \code{berryFunctions::\link[berryFunctions]{colPoints}}
+#'                if \code{proj} != NA.
 #'
 vis_dem <- function(
  inpath=choose.dir(),
@@ -52,6 +54,8 @@ vis_dem <- function(
  proj=NA,
  pch=15,
  cex=0.7,
+ legend=TRUE,
+ legargs=NULL,
  pdfargs=NULL,
  ...)
 {
@@ -96,7 +100,6 @@ vis_dem <- function(
     {
     graphics::image(dem,  col=col, asp=1, add=add)
     graphics::image(facc, col=rivcol, add=TRUE )
-    berryFunctions::colPointsLegend(unlist(dem), colors=col, bg=bg, title="Elevation", ...)
     } else
     {
     pch <- rep(pch, length.out=2)
@@ -105,7 +108,11 @@ vis_dem <- function(
                               pch=pch[1], cex=cex[1], add=add,  legend=FALSE, ...)
     berryFunctions::colPoints(xy$x, xy$y, as.vector(facc), col=rivcol,
                               pch=pch[2], cex=cex[2], add=TRUE, legend=FALSE, ...)
-    berryFunctions::colPointsLegend(unlist(dem), colors=col, bg="transparent", title="Elevation", ...)
+    }
+  if(legend)
+    {
+    legdefs <- list(z=unlist(dem), colors=col, bg="transparent", title="Elevation")
+    do.call(berryFunctions::colPointsLegend, berryFunctions::owa(legdefs, legargs))
     }
   if(pdf|png) if(!add) dev.off()
   } # end if plot
