@@ -39,5 +39,6 @@ Read NETCDF file and extract time, location and a variable from it.
 \author{
 Berry Boessenkool, \email{berry-b@gmx.de}, Feb 2017
 }
+\keyword{file}
 \keyword{list}
 \keyword{spatial}
