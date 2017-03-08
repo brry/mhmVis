@@ -6,9 +6,9 @@
 plot mHM-typical ASC raster files}
 \usage{
 vis_asc(asc = file.choose(), proj = NA, pdf = FALSE, png = TRUE,
-  outfile = asc$file, pdfargs = NULL, add = FALSE, asp = 1, mar = c(0,
-  0, 0, 0), mgp = c(3, 0.7, 0), col = seqPal(100), bg = "grey",
-  pch = 15, cex = 0.7, legend = TRUE, title = asc$name,
+  outfile = asc$file, closedev = TRUE, pdfargs = NULL, add = FALSE,
+  asp = 1, mar = c(0, 0, 0, 0), mgp = c(3, 0.7, 0), col = seqPal(100),
+  bg = "grey", pch = 15, cex = 0.7, legend = TRUE, title = asc$name,
   legargs = NULL, ...)
 }
 \arguments{
@@ -22,6 +22,8 @@ is not a list. DEFAULT: NA}
 DEFAULT: PDF=FALSE, png=TRUE}
 
 \item{outfile}{Output filename without pdf/png extension. DEFAULT: asc$file}
+
+\item{closedev}{Logical: if pdf|png, close devica at end of function? DEFAULT: TRUE}
 
 \item{pdfargs}{List of arguments passed to \code{\link{pdf_png}}.}
 
@@ -50,7 +52,7 @@ DEFAULT: c(0,0,0,0), c(3,0.7,0)}
 (if \code{proj} != NA).}
 }
 \value{
-None, used for plotting
+Invisible list with pdf, png, add, closedev
 }
 \description{
 Visualize asc files

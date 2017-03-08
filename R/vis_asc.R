@@ -1,7 +1,7 @@
 #' Visualize asc files
 #' plot mHM-typical ASC raster files
 #'
-#' @return None, used for plotting
+#' @return Invisible list with pdf, png, add, closedev
 #' @author Berry Boessenkool, \email{berry-b@@gmx.de}, Feb-March 2017
 #' @seealso \code{\link{read_asc}}, \code{\link{vis_dem}}
 #' @keywords hplot color spatial
@@ -18,6 +18,7 @@
 #' @param pdf,png Save output to disc? See \code{\link{pdf_png}}.
 #'                DEFAULT: PDF=FALSE, png=TRUE
 #' @param outfile Output filename without pdf/png extension. DEFAULT: asc$file
+#' @param closedev Logical: if pdf|png, close devica at end of function? DEFAULT: TRUE
 #' @param pdfargs List of arguments passed to \code{\link{pdf_png}}.
 #' @param add     Logical: add to existing plot? DEFAULT: FALSE
 #' @param asp     Plot aspect ratio, see \code{\link{plot.window}}. DEFAULT: 1
@@ -40,6 +41,7 @@ vis_asc <- function(
  pdf=FALSE,
  png=TRUE,
  outfile=asc$file,
+ closedev=TRUE,
  pdfargs=NULL,
  add=FALSE,
  asp=1,
@@ -54,7 +56,7 @@ vis_asc <- function(
  legargs=NULL,
  ...)
 {
-# read file if asc is not an appropriate list
+# read file if asc is not an appropriate list:
 if(!is.list(asc)) asc <- read_asc(asc,proj)
 # check list elements:
 elems <- c("asc","x","y","file","name","proj")
@@ -82,5 +84,7 @@ if(legend)
   legdefs <- list(z=unlist(asc$asc), colors=col, bg="transparent", title=title)
   do.call(berryFunctions::colPointsLegend, berryFunctions::owa(legdefs, legargs))
   }
-if(pdf|png) if(!add) dev.off()
+if(pdf|png) if(!add & closedev) dev.off()
+# output:
+return(invisible(   list(pdf=pdf,png=png,add=add,closedev=closedev)   ))
 }
