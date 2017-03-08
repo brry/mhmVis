@@ -2,8 +2,9 @@
 #'
 #' Read mHM-typical ASC raster files and create a full set of (projected) coordinates
 #'
-#' @return invisible list with matrices for asc, x and y,
-#' as well as character strings for the filename (file and name) and the projection (proj).
+ #' @return invisible list with matrices for "asc", "x" and "y",
+#' as well as character strings for the filename ("file" and "name"),
+#' the projection ("proj") and the NA character string ("NAS").
 #' x and y are original coordinates, unless \code{proj != NA}, when they are transformed to lat-long degrees.
 #' @author Berry Boessenkool, \email{berry-b@@gmx.de}, Feb-March 2017
 #' @seealso \code{\link{vis_asc}} for plotting the result
@@ -61,5 +62,5 @@ read_asc <- function(
   x <- matrix(xy$x, nrow=nrow(asc), ncol=ncol(asc))
   y <- matrix(xy$y, nrow=nrow(asc), ncol=ncol(asc))
   name <- tools::file_path_sans_ext(basename(file))
-  return(invisible(list(asc=asc, x=x, y=y, file=file, name=name, proj=proj)))
+  return(invisible(list(asc=asc, x=x, y=y, file=file, name=name, proj=proj, NAS=NAS)))
 }
