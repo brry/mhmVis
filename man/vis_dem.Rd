@@ -4,51 +4,38 @@
 \alias{vis_dem}
 \title{Visualize dem and facc files}
 \usage{
-vis_dem(inpath = choose.dir(), plot = TRUE, add = FALSE, pdf = FALSE,
-  png = TRUE, col = terrain.colors(100), bg = "grey", mar = c(0, 0, 0,
-  0), mgp = c(3, 0.7, 0), proj = NA, pch = 15, cex = 0.7,
-  legend = TRUE, legargs = NULL, pdfargs = NULL, ...)
+vis_dem(dem, proj = NA, col = terrain.colors(100), nriv = 150,
+  rivcol = c(NA, berryFunctions::seqPal(nriv, colors = c("lightblue",
+  "darkblue"))), pch = 15, cex = c(0.14, 0.25), add = FALSE,
+  legend = TRUE, title = "Elevation", ...)
 }
 \arguments{
-\item{inpath}{Directory containing mHM input files "dem.asc" and "facc.asc".
-DEFAULT: \code{\link{choose.dir}()}}
+\item{dem}{List returned by \code{\link{read_dem}} or character string
+giving a directory (passed to read_dem).}
 
-\item{plot}{Logical: should plot be created? If FALSE, files are still read,
-processed and returned. DEFAULT: TRUE}
+\item{proj}{projection passed to \code{\link{read_asc}}. DEFAULT: NA}
+
+\item{col}{DEM color palette. DEFAULT: \code{\link{terrain.colors}(100)}}
+
+\item{nriv}{Number of colors for default river palette. A higher number
+means more river stretches will be displayed. DEFAULT: 150}
+
+\item{rivcol}{River color palette. DEFAULT: c(NA, seqPal(nriv, ---))}
+
+\item{pch, cex}{Point type + size for colPoints if \code{dem$proj} != NA.
+Can each be two values (DEM + FACC separately).
+DEFAULT: pch=15, cex=c(0.14, 0.25)}
 
 \item{add}{Logical: add to existing plot? DEFAULT: FALSE}
 
-\item{pdf, png}{Save output to disc? See \code{\link{pdf_png}}.
-DEFAULT: PDF=FALSE, png=TRUE}
-
-\item{col}{Color palette. DEFAULT: \code{\link{terrain.colors}(100)}}
-
-\item{bg}{Graph background color. DEFAULT: "grey"}
-
-\item{mar, mgp}{Plot margins and margin placement, see \code{\link{par}}.
-DEFAULT: c(0,0,0,0), c(3,0.7,0)}
-
-\item{proj}{Current projection string. If not NA, coordinates will be converted
-to lat-long coordinates. If \code{proj} is a number, e.g. 3035,
-it will be replaced with the online epsg proj4 from
-\url{http://www.spatialreference.org/ref/epsg/3035/}.
-Note that this may increase plotting time a lot. DEFAULT: NA}
-
-\item{pch, cex}{Point type + size for colPoints if \code{proj} != NA.
-Can each be two values (DEM + FACC separately). DEFAULT: 15, 0.7}
-
 \item{legend}{Logical: add \code{\link{colPointsLegend}}? DEFAULT: TRUE}
 
-\item{legargs}{List of arguments passed to \code{\link{colPointsLegend}}.}
+\item{title}{CHaracter string for legend title. DEFAULT: "Elevation"}
 
-\item{pdfargs}{List of arguments passed to \code{\link{pdf_png}}.}
-
-\item{\dots}{Arguments passed to
-\code{berryFunctions::\link[berryFunctions]{colPoints}}
-if \code{proj} != NA.}
+\item{\dots}{Further arguments passed to \code{\link{vis_asc}}.}
 }
 \value{
-list with dem + facc matrix and rivcol
+Invisible list dem or \code{\link{read_dem}} result
 }
 \description{
 Visualize mHM elevation input data: dem (Digital Elevation Model) and
@@ -59,10 +46,10 @@ facc (Flow Accumulation, rivers modeled from DEM)
 
 }
 \seealso{
-\code{\link{vis_asc}} for plotting any asc file
+\code{\link{read_dem}}, \code{\link{vis_asc}} for plotting any asc file
 }
 \author{
-Berry Boessenkool, \email{berry-b@gmx.de}, Feb 2017
+Berry Boessenkool, \email{berry-b@gmx.de}, Feb-March 2017
 }
 \keyword{color}
 \keyword{hplot}
