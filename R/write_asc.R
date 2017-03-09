@@ -21,10 +21,7 @@ write_asc <- function(
  file=newFilename(asc$file),
   ...)
 {
-# check list elements:
-elems <- c("asc","file","meta", "NAS")
-isin <-  elems %in% names(asc)
-if(!all(isin)) stop("asc list does not contain the element ", toString(elems[!isin]))
+check_list_elements(asc, "asc","file","meta","NAS")
 # Transpose back to original arrangement:
 out <- apply(t(asc$asc), 2, rev)
 # replace NA with appropriate value:

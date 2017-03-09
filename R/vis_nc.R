@@ -61,6 +61,7 @@ vis_nc <- function(
  ...
 )
 {
+check_list_elements(nc, "time", "lat", "lon", "var", "varname", "file", "cdf")
  #force(zlab)
  if(!suppressWarnings(is.na(apply)) )
    {

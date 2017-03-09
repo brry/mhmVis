@@ -43,9 +43,7 @@ vis_dem <- function(
 # read file if dem is not an appropriate list:
 if(!is.list(dem)) dem <- read_dem(dem,proj)
 # check list elements:
-elems <- c("dem","facc","x","y","file","name","proj")
-isin <-  elems %in% names(dem)
-if(!all(isin)) stop("dem does not contain ", toString(elems[!isin]))
+check_list_elements(dem, "dem","facc","x","y","file","name","proj")
 if("asc" %in% names(dem)) stop("dem may not contain a list element named asc.")
 # Object element preparation:
 pdem <- facc <- dem

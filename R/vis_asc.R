@@ -60,9 +60,7 @@ vis_asc <- function(
 # read file if asc is not an appropriate list:
 if(!is.list(asc)) asc <- read_asc(asc,proj)
 # check list elements:
-elems <- c("asc","x","y","file","name","proj")
-isin <-  elems %in% names(asc)
-if(!all(isin)) stop("asc does not contain ", toString(elems[!isin]))
+check_list_elements(asc, "asc","x","y","file","name","proj")
 # default margins
 if(!is.na(asc$proj) & missing(mar)) mar <- c(2.1,2.7,0.5,0.5)
 # saving plot setup
