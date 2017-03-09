@@ -22,10 +22,13 @@ DEFAULT: NA}
 \item{\dots}{Further arguments passed to \code{\link{read.table}}}
 }
 \value{
-invisible list with matrices for "asc", "x" and "y",
+Invisible list with matrices for "asc", "x" and "y",
 as well as character strings for the filename ("file" and "name"),
-the projection ("proj") and the NA character string ("NAS").
-x and y are original coordinates, unless \code{proj != NA}, when they are transformed to lat-long degrees.
+and the projection ("proj").
+There are also values for the NA character string ("NAS") and "cellsize",
+as well as the metainformation lines from the file ("meta").\cr#'
+x and y are original coordinates, unless \code{proj != NA},
+in which case they are transformed to lat-long degrees.
 }
 \description{
 Read mHM-typical ASC raster files and create a full set of (projected) coordinates

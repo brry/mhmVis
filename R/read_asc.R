@@ -2,10 +2,13 @@
 #'
 #' Read mHM-typical ASC raster files and create a full set of (projected) coordinates
 #'
- #' @return invisible list with matrices for "asc", "x" and "y",
+ #' @return Invisible list with matrices for "asc", "x" and "y",
 #' as well as character strings for the filename ("file" and "name"),
-#' the projection ("proj") and the NA character string ("NAS").
-#' x and y are original coordinates, unless \code{proj != NA}, when they are transformed to lat-long degrees.
+#' and the projection ("proj").
+#' There are also values for the NA character string ("NAS") and "cellsize",
+#' as well as the metainformation lines from the file ("meta").\cr#'
+#' x and y are original coordinates, unless \code{proj != NA},
+#' in which case they are transformed to lat-long degrees.
 #' @author Berry Boessenkool, \email{berry-b@@gmx.de}, Feb-March 2017
 #' @seealso \code{\link{vis_asc}} for plotting the result
 #' @keywords file
@@ -34,6 +37,7 @@ read_asc <- function(
  ...)
 {
   # get meta information
+  metalines <- readLines(file, n=6)
   meta1 <- read.table(file, nrows=6, as.is=TRUE)
   meta <- data.frame(t(meta1[,2]))
   colnames(meta) <- meta1[,1]
@@ -62,5 +66,6 @@ read_asc <- function(
   x <- matrix(xy$x, nrow=nrow(asc), ncol=ncol(asc))
   y <- matrix(xy$y, nrow=nrow(asc), ncol=ncol(asc))
   name <- tools::file_path_sans_ext(basename(file))
-  return(invisible(list(asc=asc, x=x, y=y, file=file, name=name, proj=proj, NAS=NAS)))
+  return(invisible(list(asc=asc, x=x, y=y, file=file, name=name, proj=proj,
+                        NAS=NAS, cellsize=meta$cellsize, meta=metalines)))
 }
