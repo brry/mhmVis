@@ -2,8 +2,7 @@
 % Please edit documentation in R/vis_asc.R
 \name{vis_asc}
 \alias{vis_asc}
-\title{Visualize asc files
-plot mHM-typical ASC raster files}
+\title{Visualize asc files}
 \usage{
 vis_asc(asc = file.choose(), proj = NA, pdf = FALSE, png = TRUE,
   outfile = asc$file, closedev = TRUE, pdfargs = NULL, add = FALSE,
@@ -55,7 +54,6 @@ DEFAULT: c(0,0,0,0), c(3,0.7,0)}
 Invisible list with pdf, png, add, closedev
 }
 \description{
-Visualize asc files
 plot mHM-typical ASC raster files
 }
 \examples{
