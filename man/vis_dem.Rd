@@ -4,25 +4,28 @@
 \alias{vis_dem}
 \title{Visualize dem and facc files}
 \usage{
-vis_dem(dem, proj = NA, col = terrain.colors(100), nriv = 150,
-  rivcol = c(NA, berryFunctions::seqPal(nriv, colors = c("lightblue",
-  "darkblue"))), pch = 15, cex = c(0.14, 0.25), add = FALSE,
+vis_dem(dem, proj = NA, col = terrain.colors(100),
+  rivcol = berryFunctions::seqPal(150, colors = c("lightblue", "darkblue")),
+  rasterriv = FALSE, pch = 15, cex = c(0.14, 0.25), add = FALSE,
   legend = TRUE, title = "Elevation", ...)
 }
 \arguments{
 \item{dem}{List returned by \code{\link{read_dem}} or character string
 giving a directory (passed to read_dem).}
 
-\item{proj}{projection passed to \code{\link{read_asc}}. DEFAULT: NA}
+\item{proj}{Projection passed to \code{\link{read_asc}}. DEFAULT: NA}
 
 \item{col}{DEM color palette. DEFAULT: \code{\link{terrain.colors}(100)}}
 
-\item{nriv}{Number of colors for default river palette. A higher number
-means more river stretches will be displayed. DEFAULT: 150}
+\item{rivcol}{River color palette. NA will be prepended if rasterriv=TRUE.
+DEFAULT: \code{\link{seqPal}(150, colors=c("lightblue","darkblue"))}}
 
-\item{rivcol}{River color palette. DEFAULT: c(NA, seqPal(nriv, ---))}
+\item{rasterriv}{Logical: should river be added as raster (with \code{\link{vis_asc}})
+instead of lines (with \code{\link{vis_river}})?
+Useful to examine single cells exactly. DEFAULT: FALSE}
 
-\item{pch, cex}{Point type + size for colPoints if \code{dem$proj} != NA.
+\item{pch, cex}{Point type + size for \code{\link{colPoints}}.
+Only used if \code{dem$proj} != NA.
 Can each be two values (DEM + FACC separately).
 DEFAULT: pch=15, cex=c(0.14, 0.25)}
 
@@ -30,9 +33,10 @@ DEFAULT: pch=15, cex=c(0.14, 0.25)}
 
 \item{legend}{Logical: add \code{\link{colPointsLegend}}? DEFAULT: TRUE}
 
-\item{title}{CHaracter string for legend title. DEFAULT: "Elevation"}
+\item{title}{Character string for legend title. DEFAULT: "Elevation"}
 
-\item{\dots}{Further arguments passed to \code{\link{vis_asc}}.}
+\item{\dots}{Further arguments passed to \code{\link{vis_asc}} for DEM and
+\code{\link{vis_asc}} or \code{\link{vis_river}} for FACC.}
 }
 \value{
 Invisible list dem or \code{\link{read_dem}} result
