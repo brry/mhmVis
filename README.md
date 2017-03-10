@@ -1,19 +1,23 @@
 ### mhmVis
-An R package to visualise mHM input and output files, including creating an animated movie from netcdf files.
-This is work-in-heavy-progress and subject to many improvements...
+`mhmVis` is an R package to visualise mHM input and output files.
+The main focus is to read, process and plot `netcdf` and `asc` files.
+`mhmVis` tries to facilitate automated saving of publication-ready grahics.
+E.g. from netcdf files, `vis_nc_film` creates an animated time series movie on a projected map.
 
-This is planned to be linked with [mHMr](https://github.com/JBrenn/mHMr) one day.
+This is work-in-heavy-progress and still subject to API changes.
+It is planned to be linked with [mHMr](https://github.com/JBrenn/mHMr) one day.
+Bug reports and feature requests are welcome as an 
+[issue](https://github.com/brry/mhmVis/issues) or via email at <berry-b@gmx.de>.
 
 ### installation
 
-Install dependencies:
+Install dependencies ([instructions](https://github.com/brry/OSMscale#intro) 
+in case `OSMscale` does not install out of the box):
 ```R
 install.packages("berryFunctions")
 install.packages("OSMscale")
 library(OSMscale)
 ```
-There are [instructions](https://github.com/brry/OSMscale#intro) 
-in case `OSMscale` does not install out of the box.
 
 Update dependencies and install `mhmVis` itself:
 ```R
