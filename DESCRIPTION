@@ -1,6 +1,6 @@
 Package: mhmVis
 Title: Visualisation of 'mHM' Input and Output Files, Including 'netcdf' Files
-Version: 0.2.0
+Version: 0.2.1
 Date: 2017-03-10
 Authors@R: person("Berry", "Boessenkool", email = "berry-b@gmx.de", role = c("aut", "cre"))
 Description: Visualize several mHM input or output files. mHM is a multiscale Hydrological Model developed at UFZ Leipzig.

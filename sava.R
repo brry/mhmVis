@@ -1,6 +1,10 @@
 
 # Sava catchment: Test Basin in mHM
 
+unzip(system.file("extdata/sava.zip", package="mhmVis") )
+
+
+
 map <- pointsMap(lat=c(43,49), long=c(12,17), zoom=6, proj=pll(), pch=NA)
 dem <- read_dem("sava/input/morph", proj=3035)
 
