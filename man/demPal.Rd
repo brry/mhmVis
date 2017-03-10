@@ -15,7 +15,7 @@ rivPal(logbase = 1, n = 150, ...)
 become more apparent. 1 to use original \code{\link{terrain.colors}}.
 DEFAULT: 1.02 (demPal), 1 (rivPal)}
 
-\item{n}{Number of colors to be used in palette.
+\item{n}{Number of colors to be used in palette. Not exactly n if logbase != 1.
 DEFAULT: 100 (demPal), 150 (rivPal)}
 
 \item{\dots}{Further arguments passed to \code{berryFunctions::\link{seqPal}}}

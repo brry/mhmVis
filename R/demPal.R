@@ -19,7 +19,7 @@
 #' @param logbase Numerical: stretch colors so that differences in small values
 #'                become more apparent. 1 to use original \code{\link{terrain.colors}}.
 #'                DEFAULT: 1.02 (demPal), 1 (rivPal)
-#' @param n       Number of colors to be used in palette.
+#' @param n       Number of colors to be used in palette. Not exactly n if logbase != 1.
 #'                DEFAULT: 100 (demPal), 150 (rivPal)
 #' @param \dots   Further arguments passed to \code{berryFunctions::\link{seqPal}}
 #'
@@ -42,5 +42,10 @@ n=150,
 ...
 )
 {
+if(logbase>2 & missing(n))
+{
+ n <- logbase
+ logbase <- 1
+}
 berryFunctions::seqPal(n, colors=c("lightblue","darkblue"), logbase=logbase, ...)
 }
