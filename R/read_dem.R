@@ -36,6 +36,7 @@ berryFunctions::checkFile(c(dempath,faccpath,fdirpath))
 if(!quiet) message("Reading ", dempath, "...")
 dem <- read_asc(dempath, proj=proj, ...)
 names(dem)[1] <- "dem"
+dem$file <- file.path(inpath, "DEM", fsep="/")
 # Read facc file (assuming same projection, extend etc. as dem):
 if(!quiet) message("Reading ", faccpath, "...")
 facc <- read.table(file=faccpath, skip=6, na.strings=dem$NAS, ...)
