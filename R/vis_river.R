@@ -49,27 +49,32 @@
 #'              giving a directory (passed to read_dem).
 #' @param proj  Projection passed to \code{\link{read_asc}}. DEFAULT: NA
 #' @param prop  Proportion of catchment areas (of each raster cell)
-#'              beyond which a channel counts as river. DEFAULT: 0.98
-#' @param zlab  Legend title. DEFAULT: "Catchment area  [1000 km^2]"
+#'              beyond which a channel counts as river. Lower values mean longer
+#'              stretches identified as rivers. DEFAULT: 0.98
 #' @param col   Color scale. DEFAULT: \code{\link{seqPal}(150, colors=c("lightblue","darkblue"))}
 #' @param lwd   Line width range. DEFAULT: 1:6
 #' @param add   Logical: add to existing plot? DEFAULT: FALSE
-#' @param \dots Further arguments passed to \code{\link{segments}}.
+#' @param legend  Logical: add \code{\link{colPointsLegend}}? DEFAULT: TRUE
+#' @param title   Character: Legend title. DEFAULT: "Catchment area  [1000 km^2]"
+#' @param legargs List of arguments passed to \code{\link{colPointsLegend}}.
+#' @param \dots   Further arguments passed to \code{\link{segments}}.
 #'
 vis_river <- function(
  dem,
  proj=NA,
  prop=0.98,
- zlab="Catchment area  [1000 km^2]",
  col=seqPal(150, colors=c("lightblue","darkblue")),
  lwd=1:6,
  add=FALSE,
+ legend=TRUE,
+ title="Catchment area  [1000 km^2]",
+ legargs=NULL,
  ...)
 {
 # read file if dem is not an appropriate list:
 if(!is.list(dem)) dem <- read_dem(dem,proj)
 # check list elements:
-check_list_elements(dem, "facc","fdir","x","y","file","name","proj")
+check_list_elements(dem, "facc","fdir","x","y","file","name","proj","cellsize")
 # extract river coordinates (sel=selection):
 sel <- which(dem$facc > quantile(dem$facc, prop, na.rm=TRUE), arr.ind=TRUE)
 sel <- data.frame(sel)
@@ -97,12 +102,19 @@ sel$tocol <- sel$col + DIR[rows,"y"]
 #
 # draw segments:
 z <- diag(dem$facc[sel$row,sel$col])
+z <- z*(dem$cellsize/1000)^2 # km^2
 cl <- classify(x=z, breaks=length(col) )
 lwd <- rescale(z,min(lwd),max(lwd))
 if(!add) plot(1, type="n", ylim=range(dem$y), xlim=range(dem$x), las=1, ylab="", xlab="")
 segments(x0=diag(dem$x[sel$row,sel$col]), x1=diag(dem$x[sel$torow,sel$tocol]),
          y0=diag(dem$y[sel$row,sel$col]), y1=diag(dem$y[sel$torow,sel$tocol]),
          col=col[cl$index], lwd=lwd, ...)
+# Add legend:
+if(legend)
+  {
+  legdefs <- list(z=z/1000, colors=col, bg="transparent", title=title, density=FALSE)
+  do.call(berryFunctions::colPointsLegend, berryFunctions::owa(legdefs, legargs))
+  }
 # output:
 return(invisible(sel))
 

@@ -4,9 +4,9 @@
 \alias{vis_river}
 \title{Visialize DEM river as lines (not raster)}
 \usage{
-vis_river(dem, proj = NA, prop = 0.98,
-  zlab = "Catchment area  [1000 km^2]", col = seqPal(150, colors =
-  c("lightblue", "darkblue")), lwd = 1:6, add = FALSE, ...)
+vis_river(dem, proj = NA, prop = 0.98, col = seqPal(150, colors =
+  c("lightblue", "darkblue")), lwd = 1:6, add = FALSE, legend = TRUE,
+  title = "Catchment area  [1000 km^2]", legargs = NULL, ...)
 }
 \arguments{
 \item{dem}{List returned by \code{\link{read_dem}} or character string
@@ -15,15 +15,20 @@ giving a directory (passed to read_dem).}
 \item{proj}{Projection passed to \code{\link{read_asc}}. DEFAULT: NA}
 
 \item{prop}{Proportion of catchment areas (of each raster cell)
-beyond which a channel counts as river. DEFAULT: 0.98}
-
-\item{zlab}{Legend title. DEFAULT: "Catchment area  [1000 km^2]"}
+beyond which a channel counts as river. Lower values mean longer
+stretches identified as rivers. DEFAULT: 0.98}
 
 \item{col}{Color scale. DEFAULT: \code{\link{seqPal}(150, colors=c("lightblue","darkblue"))}}
 
 \item{lwd}{Line width range. DEFAULT: 1:6}
 
 \item{add}{Logical: add to existing plot? DEFAULT: FALSE}
+
+\item{legend}{Logical: add \code{\link{colPointsLegend}}? DEFAULT: TRUE}
+
+\item{title}{Character: Legend title. DEFAULT: "Catchment area  [1000 km^2]"}
+
+\item{legargs}{List of arguments passed to \code{\link{colPointsLegend}}.}
 
 \item{\dots}{Further arguments passed to \code{\link{segments}}.}
 }
