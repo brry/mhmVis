@@ -51,7 +51,7 @@
 #' @param prop  Proportion of catchment areas (of each raster cell)
 #'              beyond which a channel counts as river. Lower values mean longer
 #'              stretches identified as rivers. DEFAULT: 0.98
-#' @param col   Color scale. DEFAULT: \code{\link{seqPal}(150, colors=c("lightblue","darkblue"))}
+#' @param col   Color scale. DEFAULT: \code{\link{rivPal}(n=150)}
 #' @param lwd   Line width range. DEFAULT: 1:6
 #' @param add   Logical: add to existing plot? DEFAULT: FALSE
 #' @param legend  Logical: add \code{\link{colPointsLegend}}? DEFAULT: TRUE
@@ -64,7 +64,7 @@ vis_river <- function(
  dem,
  proj=NA,
  prop=0.98,
- col=seqPal(150, colors=c("lightblue","darkblue")),
+ col=rivPal(n=150),
  lwd=1:6,
  add=FALSE,
  legend=TRUE,

@@ -4,10 +4,9 @@
 \alias{vis_river}
 \title{Visialize DEM river as lines (not raster)}
 \usage{
-vis_river(dem, proj = NA, prop = 0.98, col = seqPal(150, colors =
-  c("lightblue", "darkblue")), lwd = 1:6, add = FALSE, legend = TRUE,
-  title = "Catchment area  [1000 km^2]", legargs = NULL, quiet = FALSE,
-  ...)
+vis_river(dem, proj = NA, prop = 0.98, col = rivPal(n = 150), lwd = 1:6,
+  add = FALSE, legend = TRUE, title = "Catchment area  [1000 km^2]",
+  legargs = NULL, quiet = FALSE, ...)
 }
 \arguments{
 \item{dem}{List returned by \code{\link{read_dem}} or character string
@@ -19,7 +18,7 @@ giving a directory (passed to read_dem).}
 beyond which a channel counts as river. Lower values mean longer
 stretches identified as rivers. DEFAULT: 0.98}
 
-\item{col}{Color scale. DEFAULT: \code{\link{seqPal}(150, colors=c("lightblue","darkblue"))}}
+\item{col}{Color scale. DEFAULT: \code{\link{rivPal}(n=150)}}
 
 \item{lwd}{Line width range. DEFAULT: 1:6}
 

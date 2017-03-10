@@ -4,8 +4,7 @@
 \alias{vis_dem}
 \title{Visualize dem and facc files}
 \usage{
-vis_dem(dem, proj = NA, col = terrain.colors(100),
-  rivcol = berryFunctions::seqPal(150, colors = c("lightblue", "darkblue")),
+vis_dem(dem, proj = NA, col = demPal(1.02), rivcol = rivPal(n = 150),
   rasterriv = FALSE, prop = 0.98, pch = 15, cex = c(0.14, 0.25),
   add = FALSE, legend = TRUE, title = "Elevation", quiet = FALSE, ...)
 }
@@ -15,10 +14,10 @@ giving a directory (passed to read_dem).}
 
 \item{proj}{Projection passed to \code{\link{read_asc}}. DEFAULT: NA}
 
-\item{col}{DEM color palette. DEFAULT: \code{\link{terrain.colors}(100)}}
+\item{col}{DEM color palette. DEFAULT: \code{\link{demPal}(1.02)}}
 
 \item{rivcol}{River color palette. NA will be prepended if rasterriv=TRUE.
-DEFAULT: \code{\link{seqPal}(150, colors=c("lightblue","darkblue"))}}
+DEFAULT: \code{\link{rivPal}(n=150)}}
 
 \item{rasterriv}{Logical: should river be added as raster (with \code{\link{vis_asc}})
 instead of lines (with \code{\link{vis_river}})?

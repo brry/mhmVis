@@ -16,9 +16,9 @@
 #' @param dem     List returned by \code{\link{read_dem}} or character string
 #'                giving a directory (passed to read_dem).
 #' @param proj    Projection passed to \code{\link{read_asc}}. DEFAULT: NA
-#' @param col     DEM color palette. DEFAULT: \code{\link{terrain.colors}(100)}
+#' @param col     DEM color palette. DEFAULT: \code{\link{demPal}(1.02)}
 #' @param rivcol  River color palette. NA will be prepended if rasterriv=TRUE.
-#'                DEFAULT: \code{\link{seqPal}(150, colors=c("lightblue","darkblue"))}
+#'                DEFAULT: \code{\link{rivPal}(n=150)}
 #' @param rasterriv Logical: should river be added as raster (with \code{\link{vis_asc}})
 #'                instead of lines (with \code{\link{vis_river}})?
 #'                Useful to examine single cells exactly. DEFAULT: FALSE
@@ -39,8 +39,8 @@
 vis_dem <- function(
  dem,
  proj=NA,
- col=terrain.colors(100),
- rivcol=berryFunctions::seqPal(150, colors=c("lightblue","darkblue")),
+ col=demPal(1.02),
+ rivcol=rivPal(n=150),
  rasterriv=FALSE,
  prop=0.98,
  pch=15,
