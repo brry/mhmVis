@@ -5,7 +5,7 @@
 \title{Read dem and facc files}
 \usage{
 read_dem(inpath = if (.Platform$OS.type == "windows") choose.dir() else ".",
-  proj = NA, ...)
+  proj = NA, quiet = FALSE, ...)
 }
 \arguments{
 \item{inpath}{Directory containing mHM input files "dem.asc" and "facc.asc".
@@ -13,11 +13,13 @@ DEFAULT: \code{\link{choose.dir}()} on windows, \code{"."} on unix}
 
 \item{proj}{projection passed to \code{\link{read_asc}}. DEFAULT: NA}
 
+\item{quiet}{Logical: should progress messages be suppressed? DEFAULT: FALSE}
+
 \item{\dots}{Further arguments passed to \code{\link{read_asc}}.}
 }
 \value{
 list as in \code{\link{read_asc}}, but "asc" is replaced with
-elements "dem" and "facc": The element "folder" is added as well.
+elements "dem", "facc" and "fdir". The element "folder" is added as well.
 }
 \description{
 Read mHM-typical elevation input data: dem (Digital Elevation Model) and

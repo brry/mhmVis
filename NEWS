@@ -8,7 +8,6 @@ ToDo list:
 - include examples from mHM test_basins
 - vis_nc: bF::seqPal should have this as an option
 - vis_dem: call vis_river
-- read_dem: also read fdir, pass to vis_river
 
 
 Development history:
