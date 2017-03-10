@@ -6,7 +6,8 @@
 \usage{
 vis_river(dem, proj = NA, prop = 0.98, col = seqPal(150, colors =
   c("lightblue", "darkblue")), lwd = 1:6, add = FALSE, legend = TRUE,
-  title = "Catchment area  [1000 km^2]", legargs = NULL, ...)
+  title = "Catchment area  [1000 km^2]", legargs = NULL, quiet = FALSE,
+  ...)
 }
 \arguments{
 \item{dem}{List returned by \code{\link{read_dem}} or character string
@@ -29,6 +30,8 @@ stretches identified as rivers. DEFAULT: 0.98}
 \item{title}{Character: Legend title. DEFAULT: "Catchment area  [1000 km^2]"}
 
 \item{legargs}{List of arguments passed to \code{\link{colPointsLegend}}.}
+
+\item{quiet}{Logical: should progress messages be suppressed? DEFAULT: FALSE}
 
 \item{\dots}{Further arguments passed to \code{\link{segments}}.}
 }

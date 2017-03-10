@@ -6,8 +6,8 @@
 \usage{
 vis_dem(dem, proj = NA, col = terrain.colors(100),
   rivcol = berryFunctions::seqPal(150, colors = c("lightblue", "darkblue")),
-  rasterriv = FALSE, pch = 15, cex = c(0.14, 0.25), add = FALSE,
-  legend = TRUE, title = "Elevation", ...)
+  rasterriv = FALSE, prop = 0.98, pch = 15, cex = c(0.14, 0.25),
+  add = FALSE, legend = TRUE, title = "Elevation", quiet = FALSE, ...)
 }
 \arguments{
 \item{dem}{List returned by \code{\link{read_dem}} or character string
@@ -24,6 +24,10 @@ DEFAULT: \code{\link{seqPal}(150, colors=c("lightblue","darkblue"))}}
 instead of lines (with \code{\link{vis_river}})?
 Useful to examine single cells exactly. DEFAULT: FALSE}
 
+\item{prop}{Proportion of non-river, see \code{\link{vis_river}}.
+If rasterriv=TRUE, adjust river length with the number of
+colors in \code{rivcol}. DEFAULT prop: 0.98}
+
 \item{pch, cex}{Point type + size for \code{\link{colPoints}}.
 Only used if \code{dem$proj} != NA.
 Can each be two values (DEM + FACC separately).
@@ -34,6 +38,8 @@ DEFAULT: pch=15, cex=c(0.14, 0.25)}
 \item{legend}{Logical: add \code{\link{colPointsLegend}}? DEFAULT: TRUE}
 
 \item{title}{Character string for legend title. DEFAULT: "Elevation"}
+
+\item{quiet}{Logical: should progress messages be suppressed? DEFAULT: FALSE}
 
 \item{\dots}{Further arguments passed to \code{\link{vis_asc}} for DEM and
 \code{\link{vis_asc}} or \code{\link{vis_river}} for FACC.}

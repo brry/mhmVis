@@ -22,6 +22,9 @@
 #' @param rasterriv Logical: should river be added as raster (with \code{\link{vis_asc}})
 #'                instead of lines (with \code{\link{vis_river}})?
 #'                Useful to examine single cells exactly. DEFAULT: FALSE
+#' @param prop    Proportion of non-river, see \code{\link{vis_river}}.
+#'                If rasterriv=TRUE, adjust river length with the number of
+#'                colors in \code{rivcol}. DEFAULT prop: 0.98
 #' @param pch,cex Point type + size for \code{\link{colPoints}}.
 #'                Only used if \code{dem$proj} != NA.
 #'                Can each be two values (DEM + FACC separately).
@@ -29,6 +32,7 @@
 #' @param add     Logical: add to existing plot? DEFAULT: FALSE
 #' @param legend  Logical: add \code{\link{colPointsLegend}}? DEFAULT: TRUE
 #' @param title   Character string for legend title. DEFAULT: "Elevation"
+#' @param quiet   Logical: should progress messages be suppressed? DEFAULT: FALSE
 #' @param \dots   Further arguments passed to \code{\link{vis_asc}} for DEM and
 #'                \code{\link{vis_asc}} or \code{\link{vis_river}} for FACC.
 #'
@@ -38,15 +42,17 @@ vis_dem <- function(
  col=terrain.colors(100),
  rivcol=berryFunctions::seqPal(150, colors=c("lightblue","darkblue")),
  rasterriv=FALSE,
+ prop=0.98,
  pch=15,
  cex=c(0.14, 0.25),
  add=FALSE,
  legend=TRUE,
  title="Elevation",
+ quiet=FALSE,
   ...)
 {
 # read file if dem is not an appropriate list:
-if(!is.list(dem)) dem <- read_dem(dem,proj)
+if(!is.list(dem)) dem <- read_dem(dem, proj, quiet=quiet)
 # check list elements:
 check_list_elements(dem, "dem","facc","x","y","file","name","proj")
 if("asc" %in% names(dem)) stop("dem may not contain a list element named asc.")
@@ -58,13 +64,15 @@ names(facc)[names(facc)=="facc"] <- "asc"
 pch <- rep(pch, length.out=2)
 cex <- rep(cex, length.out=2)
 # Plot:
+if(!quiet) message("Plotting DEM ...")
 o <- vis_asc(pdem, closedev=FALSE, pch=pch[1], cex=cex[1], add=add,
              legend=legend, col=col, title=title, ...)
+if(!quiet) message("Plotting River ...")
 if(rasterriv)
   vis_asc(facc, closedev=FALSE, pch=pch[2], cex=cex[2], add=TRUE,
           legend=FALSE, col=c(NA,rivcol), ...)
     else
-     vis_river(dem, add=TRUE, legend=FALSE, ...)
+     vis_river(dem, add=TRUE, legend=FALSE, prop=prop, col=rivcol, ...)
 # Turn off device if needed:
 if(o$pdf|o$png) if(!add) dev.off()
 return(invisible(dem))

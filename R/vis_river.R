@@ -57,6 +57,7 @@
 #' @param legend  Logical: add \code{\link{colPointsLegend}}? DEFAULT: TRUE
 #' @param title   Character: Legend title. DEFAULT: "Catchment area  [1000 km^2]"
 #' @param legargs List of arguments passed to \code{\link{colPointsLegend}}.
+#' @param quiet   Logical: should progress messages be suppressed? DEFAULT: FALSE
 #' @param \dots   Further arguments passed to \code{\link{segments}}.
 #'
 vis_river <- function(
@@ -69,6 +70,7 @@ vis_river <- function(
  legend=TRUE,
  title="Catchment area  [1000 km^2]",
  legargs=NULL,
+ quiet=FALSE,
  ...)
 {
 # read file if dem is not an appropriate list:
@@ -78,6 +80,7 @@ check_list_elements(dem, "facc","fdir","x","y","file","name","proj","cellsize")
 # extract river coordinates (sel=selection):
 sel <- which(dem$facc > quantile(dem$facc, prop, na.rm=TRUE), arr.ind=TRUE)
 sel <- data.frame(sel)
+if(!quiet) message("Computing flow direction targets ...")
 #
 # find target cell for each river cell:
 # 32 64 128 # flowdir
@@ -105,6 +108,7 @@ z <- diag(dem$facc[sel$row,sel$col])
 z <- z*(dem$cellsize/1000)^2 # km^2
 cl <- classify(x=z, breaks=length(col) )
 lwd <- rescale(z,min(lwd),max(lwd))
+if(!quiet) message("Plotting river lines ...")
 if(!add) plot(1, type="n", ylim=range(dem$y), xlim=range(dem$x), las=1, ylab="", xlab="")
 segments(x0=diag(dem$x[sel$row,sel$col]), x1=diag(dem$x[sel$torow,sel$tocol]),
          y0=diag(dem$y[sel$row,sel$col]), y1=diag(dem$y[sel$torow,sel$tocol]),
@@ -112,6 +116,7 @@ segments(x0=diag(dem$x[sel$row,sel$col]), x1=diag(dem$x[sel$torow,sel$tocol]),
 # Add legend:
 if(legend)
   {
+  if(!quiet) message("Adding legend ...")
   legdefs <- list(z=z/1000, colors=col, bg="transparent", title=title, density=FALSE)
   do.call(berryFunctions::colPointsLegend, berryFunctions::owa(legdefs, legargs))
   }
