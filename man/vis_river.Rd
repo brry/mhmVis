@@ -4,15 +4,15 @@
 \alias{vis_river}
 \title{Visialize DEM river as lines (not raster)}
 \usage{
-vis_river(facc, proj = NA, prop = 0.98,
+vis_river(dem, proj = NA, prop = 0.98,
   zlab = "Catchment area  [1000 km^2]", col = seqPal(150, colors =
   c("lightblue", "darkblue")), lwd = 1:6, add = FALSE, ...)
 }
 \arguments{
-\item{facc}{List returned by \code{\link{read_asc}} or character string
-giving facc.asc filename (passed to read_asc).}
+\item{dem}{List returned by \code{\link{read_dem}} or character string
+giving a directory (passed to read_dem).}
 
-\item{proj}{projection passed to \code{\link{read_asc}}. DEFAULT: NA}
+\item{proj}{Projection passed to \code{\link{read_asc}}. DEFAULT: NA}
 
 \item{prop}{Proportion of catchment areas (of each raster cell)
 beyond which a channel counts as river. DEFAULT: 0.98}
@@ -47,7 +47,7 @@ riv <- vis_river(facc)
 par(op)
 
 library(berryFunctions)
-logHist(facc$asc*(facc$cellsize/1000)^2, breaks=30) # km^2
+logHist(dem$facc*(facc$cellsize/1000)^2, breaks=30) # km^2
 }
 
 # Add rivers as small plot

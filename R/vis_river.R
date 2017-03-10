@@ -24,7 +24,7 @@
 #' par(op)
 #'
 #' library(berryFunctions)
-#' logHist(facc$asc*(facc$cellsize/1000)^2, breaks=30) # km^2
+#' logHist(dem$facc*(facc$cellsize/1000)^2, breaks=30) # km^2
 #' }
 #'
 #' # Add rivers as small plot
@@ -45,9 +45,9 @@
 #'
 #' } # end dontrun
 #'
-#' @param facc  List returned by \code{\link{read_asc}} or character string
-#'              giving facc.asc filename (passed to read_asc).
-#' @param proj  projection passed to \code{\link{read_asc}}. DEFAULT: NA
+#' @param dem   List returned by \code{\link{read_dem}} or character string
+#'              giving a directory (passed to read_dem).
+#' @param proj  Projection passed to \code{\link{read_asc}}. DEFAULT: NA
 #' @param prop  Proportion of catchment areas (of each raster cell)
 #'              beyond which a channel counts as river. DEFAULT: 0.98
 #' @param zlab  Legend title. DEFAULT: "Catchment area  [1000 km^2]"
@@ -57,7 +57,7 @@
 #' @param \dots Further arguments passed to \code{\link{segments}}.
 #'
 vis_river <- function(
- facc,
+ dem,
  proj=NA,
  prop=0.98,
  zlab="Catchment area  [1000 km^2]",
@@ -66,16 +66,12 @@ vis_river <- function(
  add=FALSE,
  ...)
 {
-# read file if facc is not an appropriate list:
-if(!is.list(facc)) facc <- read_asc(facc,proj)
-# Read fdir file (assuming same projection etc as facc):
-fdir <- read.table(file=sub("facc.asc", "fdir.asc", facc$file), skip=6, na.strings=facc$NAS, ...)
-fdir <- t(apply(fdir, 2, rev))
-fdir <- unname(fdir)
+# read file if dem is not an appropriate list:
+if(!is.list(dem)) dem <- read_dem(dem,proj)
 # check list elements:
-check_list_elements(facc, "asc","x","y","file","name","proj")
+check_list_elements(dem, "facc","fdir","x","y","file","name","proj")
 # extract river coordinates (sel=selection):
-sel <- which(facc$asc > quantile(facc$asc, prop, na.rm=TRUE), arr.ind=TRUE)
+sel <- which(dem$facc > quantile(dem$facc, prop, na.rm=TRUE), arr.ind=TRUE)
 sel <- data.frame(sel)
 #
 # find target cell for each river cell:
@@ -94,18 +90,18 @@ fdir x y
 128  1  1
 ")
 # log(DIR$fdir, base=2)+1 # row index
-rows <- log(diag(fdir[sel$row,sel$col]), base=2)+1
+rows <- log(diag(dem$fdir[sel$row,sel$col]), base=2)+1
 # table(rows)
 sel$torow <- sel$row + DIR[rows,"x"]
 sel$tocol <- sel$col + DIR[rows,"y"]
 #
 # draw segments:
-z <- diag(facc$asc[sel$row,sel$col])
+z <- diag(dem$facc[sel$row,sel$col])
 cl <- classify(x=z, breaks=length(col) )
 lwd <- rescale(z,min(lwd),max(lwd))
-if(!add) plot(1, type="n", ylim=range(facc$y), xlim=range(facc$x), las=1, ylab="", xlab="")
-segments(x0=diag(facc$x[sel$row,sel$col]), x1=diag(facc$x[sel$torow,sel$tocol]),
-         y0=diag(facc$y[sel$row,sel$col]), y1=diag(facc$y[sel$torow,sel$tocol]),
+if(!add) plot(1, type="n", ylim=range(dem$y), xlim=range(dem$x), las=1, ylab="", xlab="")
+segments(x0=diag(dem$x[sel$row,sel$col]), x1=diag(dem$x[sel$torow,sel$tocol]),
+         y0=diag(dem$y[sel$row,sel$col]), y1=diag(dem$y[sel$torow,sel$tocol]),
          col=col[cl$index], lwd=lwd, ...)
 # output:
 return(invisible(sel))
