@@ -5,16 +5,18 @@
 #' maps with the river added on top in the corner of plots, e.g. with
 #' \code{berryFunctions::\link{smallPlot}} as in the example.
 #'
-#' @return \code{\link{colPoints}} list with segment coordinates
+#' @return data.frame with segment indices
 #' @author Berry Boessenkool, \email{berry-b@@gmx.de}, Mar 2017
 #' @seealso \code{\link{vis_dem}}, \code{\link{read_dem}}
 #' @keywords aplot
 #' @importFrom stats quantile
-#' @importFrom berryFunctions rescale
+#' @importFrom graphics segments
+#' @importFrom berryFunctions rescale seqPal classify
 #' @export
 #' @examples
 #' # To be added
 #'
+#' if(FALSE){
 #' facc <- read_asc("U:/mHM_shared/basel_6935051/input/morph/facc.asc", proj=3035)
 #' op <- par(no.readonly=TRUE)
 #' vis_asc(facc, png=FALSE)
@@ -23,6 +25,7 @@
 #'
 #' library(berryFunctions)
 #' logHist(facc$asc*(facc$cellsize/1000)^2, breaks=30) # km^2
+#' }
 #'
 #' # Add rivers as small plot
 #' \dontrun{ ## Not run in CRAN checks to avoid downloading background map
@@ -48,51 +51,63 @@
 #' @param prop  Proportion of catchment areas (of each raster cell)
 #'              beyond which a channel counts as river. DEFAULT: 0.98
 #' @param zlab  Legend title. DEFAULT: "Catchment area  [1000 km^2]"
-#' @param lwd   Line width range. CURRENTLY MAPPED TO POINT SIZE!! DEFAULT: 1:3
+#' @param col   Color scale. DEFAULT: \code{\link{seqPal}(150, colors=c("lightblue","darkblue"))}
+#' @param lwd   Line width range. DEFAULT: 1:6
 #' @param add   Logical: add to existing plot? DEFAULT: FALSE
-#' @param \dots Further arguments passed to \code{\link{colPoints}} except for lines.
+#' @param \dots Further arguments passed to \code{\link{segments}}.
 #'
 vis_river <- function(
  facc,
  proj=NA,
  prop=0.98,
  zlab="Catchment area  [1000 km^2]",
- lwd=1:3,
+ col=seqPal(150, colors=c("lightblue","darkblue")),
+ lwd=1:6,
  add=FALSE,
  ...)
 {
 # read file if facc is not an appropriate list:
 if(!is.list(facc)) facc <- read_asc(facc,proj)
+# Read fdir file (assuming same projection etc as facc):
+fdir <- read.table(file=sub("facc.asc", "fdir.asc", facc$file), skip=6, na.strings=facc$NAS, ...)
+fdir <- t(apply(fdir, 2, rev))
+fdir <- unname(fdir)
 # check list elements:
-elems <- c("asc","x","y","file","name","proj")
-isin <-  elems %in% names(facc)
-if(!all(isin)) stop("facc does not contain ", toString(elems[!isin]))
-# extract river coordinates:
-sel <- which(facc$asc > quantile(facc$asc, prop, na.rm=TRUE))
-x <- facc$x[sel]
-y <- facc$y[sel]
-z <- facc$asc[sel]
-z <- z*(facc$cellsize/1000)^2 # km^2
-output <- colPoints(x,y,z/1000, add=add, zlab=zlab, lines=FALSE,
-                    cex=rescale(z,min(lwd/2),max(lwd/2)), ...)
+check_list_elements(facc, "asc","x","y","file","name","proj")
+# extract river coordinates (sel=selection):
+sel <- which(facc$asc > quantile(facc$asc, prop, na.rm=TRUE), arr.ind=TRUE)
+sel <- data.frame(sel)
+#
+# find target cell for each river cell:
+# 32 64 128 # flowdir
+# 16     1
+#  8  4  2
+DIR <- read.table(header=TRUE, text="
+fdir x y
+1    1  0
+2    1 -1
+4    0 -1
+8   -1 -1
+16  -1  0
+32  -1  1
+64   0  1
+128  1  1
+")
+# log(DIR$fdir, base=2)+1 # row index
+rows <- log(diag(fdir[sel$row,sel$col]), base=2)+1
+# table(rows)
+sel$torow <- sel$row + DIR[rows,"x"]
+sel$tocol <- sel$col + DIR[rows,"y"]
+#
+# draw segments:
+z <- diag(facc$asc[sel$row,sel$col])
+cl <- classify(x=z, breaks=length(col) )
+lwd <- rescale(z,min(lwd),max(lwd))
+if(!add) plot(1, type="n", ylim=range(facc$y), xlim=range(facc$x), las=1, ylab="", xlab="")
+segments(x0=diag(facc$x[sel$row,sel$col]), x1=diag(facc$x[sel$torow,sel$tocol]),
+         y0=diag(facc$y[sel$row,sel$col]), y1=diag(facc$y[sel$torow,sel$tocol]),
+         col=col[cl$index], lwd=lwd, ...)
 # output:
-return(invisible(c(list(minfacc=min(z)), output)))
-}
-
-
-if(FALSE){
-# development stuff
-
-
-facc$asc <- replace(facc$asc, facc$asc<riv$minfacc, NA)
-write_asc(facc)
-# raster to polylines
-library(rgdal)
-
-
-facc <- read_asc("U:/mHM_shared/lobith_6435060/input/morph/facc.asc", proj=3035)
-vis_river(facc)
-
+return(invisible(sel))
 
 }
-

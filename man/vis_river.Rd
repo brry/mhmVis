@@ -5,7 +5,8 @@
 \title{Visialize DEM river as lines (not raster)}
 \usage{
 vis_river(facc, proj = NA, prop = 0.98,
-  zlab = "Catchment area  [1000 km^2]", lwd = 1:3, add = FALSE, ...)
+  zlab = "Catchment area  [1000 km^2]", col = seqPal(150, colors =
+  c("lightblue", "darkblue")), lwd = 1:6, add = FALSE, ...)
 }
 \arguments{
 \item{facc}{List returned by \code{\link{read_asc}} or character string
@@ -18,14 +19,16 @@ beyond which a channel counts as river. DEFAULT: 0.98}
 
 \item{zlab}{Legend title. DEFAULT: "Catchment area  [1000 km^2]"}
 
-\item{lwd}{Line width range. CURRENTLY MAPPED TO POINT SIZE!! DEFAULT: 1:3}
+\item{col}{Color scale. DEFAULT: \code{\link{seqPal}(150, colors=c("lightblue","darkblue"))}}
+
+\item{lwd}{Line width range. DEFAULT: 1:6}
 
 \item{add}{Logical: add to existing plot? DEFAULT: FALSE}
 
-\item{\dots}{Further arguments passed to \code{\link{colPoints}} except for lines.}
+\item{\dots}{Further arguments passed to \code{\link{segments}}.}
 }
 \value{
-\code{\link{colPoints}} list with segment coordinates
+data.frame with segment indices
 }
 \description{
 Convert flow accumulation raster to line segments and plot it.
@@ -36,6 +39,7 @@ maps with the river added on top in the corner of plots, e.g. with
 \examples{
 # To be added
 
+if(FALSE){
 facc <- read_asc("U:/mHM_shared/basel_6935051/input/morph/facc.asc", proj=3035)
 op <- par(no.readonly=TRUE)
 vis_asc(facc, png=FALSE)
@@ -44,6 +48,7 @@ par(op)
 
 library(berryFunctions)
 logHist(facc$asc*(facc$cellsize/1000)^2, breaks=30) # km^2
+}
 
 # Add rivers as small plot
 \dontrun{ ## Not run in CRAN checks to avoid downloading background map
