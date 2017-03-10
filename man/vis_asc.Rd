@@ -7,7 +7,7 @@
 vis_asc(asc = file.choose(), proj = NA, pdf = FALSE, png = TRUE,
   outfile = asc$file, closedev = TRUE, pdfargs = NULL, add = FALSE,
   asp = 1, mar = c(0, 0, 0, 0), mgp = c(3, 0.7, 0), col = seqPal(100),
-  bg = "grey", pch = 15, cex = 0.7, legend = TRUE, title = asc$name,
+  bg = "grey", pch = 15, cex = 0.1, legend = TRUE, title = asc$name,
   legargs = NULL, ...)
 }
 \arguments{
@@ -38,7 +38,7 @@ DEFAULT: c(0,0,0,0), c(3,0.7,0)}
 
 \item{bg}{Graph background color. DEFAULT: "grey"}
 
-\item{pch, cex}{Point type + size for colPoints if \code{asc$proj} != NA. DEFAULT: 15, 0.7}
+\item{pch, cex}{Point type + size for colPoints if \code{asc$proj} != NA. DEFAULT: 15, 0.1}
 
 \item{legend}{Logical: add \code{\link{colPointsLegend}}? DEFAULT: TRUE}
 

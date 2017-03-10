@@ -28,7 +28,7 @@
 #'                DEFAULT: c(0,0,0,0), c(3,0.7,0)
 #' @param col     Color palette. DEFAULT: \code{berryFunctions::\link{seqPal}(100)}
 #' @param bg      Graph background color. DEFAULT: "grey"
-#' @param pch,cex Point type + size for colPoints if \code{asc$proj} != NA. DEFAULT: 15, 0.7
+#' @param pch,cex Point type + size for colPoints if \code{asc$proj} != NA. DEFAULT: 15, 0.1
 #' @param legend  Logical: add \code{\link{colPointsLegend}}? DEFAULT: TRUE
 #' @param title   Character: Legend title. DEFAULT: asc$name (obtained from filename)
 #' @param legargs List of arguments passed to \code{\link{colPointsLegend}}.
@@ -51,7 +51,7 @@ vis_asc <- function(
  col=seqPal(100),
  bg="grey",
  pch=15,
- cex=0.7,
+ cex=0.1,
  legend=TRUE,
  title=asc$name,
  legargs=NULL,
