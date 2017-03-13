@@ -8,7 +8,7 @@
 #' @seealso \code{\link{read_dem}}, \code{\link{vis_asc}} for plotting any asc file
 #' @keywords hplot color spatial
 #' @importFrom grDevices terrain.colors
-#' @importFrom berryFunctions seqPal
+#' @importFrom berryFunctions seqPal owa
 #' @export
 #' @examples
 #' # to be added
@@ -33,8 +33,9 @@
 #' @param legend  Logical: add \code{\link{colPointsLegend}}? DEFAULT: TRUE
 #' @param title   Character string for legend title. DEFAULT: "Elevation"
 #' @param quiet   Logical: should progress messages be suppressed? DEFAULT: FALSE
-#' @param \dots   Further arguments passed to \code{\link{vis_asc}} for DEM and
+#' @param rivargs List of arguments passed to
 #'                \code{\link{vis_asc}} or \code{\link{vis_river}} for FACC.
+#' @param \dots   Further arguments passed to \code{\link{vis_asc}} for DEM, like overwrite=TRUE.
 #'
 vis_dem <- function(
  dem,
@@ -49,6 +50,7 @@ vis_dem <- function(
  legend=TRUE,
  title="Elevation",
  quiet=FALSE,
+ rivargs=NULL,
   ...)
 {
 # read file if dem is not an appropriate list:
@@ -68,11 +70,14 @@ if(!quiet) message("Plotting DEM ...")
 o <- vis_asc(pdem, closedev=FALSE, pch=pch[1], cex=cex[1], add=add,
              legend=legend, col=col, title=title, ...)
 if(!quiet) message("Plotting River ...")
+
 if(rasterriv)
-  vis_asc(facc, closedev=FALSE, pch=pch[2], cex=cex[2], add=TRUE,
-          legend=FALSE, col=c(NA,rivcol), ...)
-    else
-     vis_river(dem, add=TRUE, legend=FALSE, prop=prop, col=rivcol, ...)
+ do.call(vis_asc, berryFunctions::owa(list(asc=facc, closedev=FALSE,
+                  pch=pch[2], cex=cex[2], add=TRUE, legend=FALSE, col=c(NA,rivcol)),
+                  rivargs, "closedev", "pch", "cex", "add", "col"))
+else
+  do.call(vis_river, berryFunctions::owa(list(dem=dem, add=TRUE, legend=FALSE,
+                     prop=prop, col=rivcol), rivargs, "add", "col", "prop"))
 # Turn off device if needed:
 if(o$pdf|o$png) if(!add) dev.off()
 return(invisible(dem))

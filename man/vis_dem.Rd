@@ -6,7 +6,8 @@
 \usage{
 vis_dem(dem, proj = NA, col = demPal(1.02), rivcol = rivPal(n = 150),
   rasterriv = FALSE, prop = 0.98, pch = 15, cex = c(0.14, 0.25),
-  add = FALSE, legend = TRUE, title = "Elevation", quiet = FALSE, ...)
+  add = FALSE, legend = TRUE, title = "Elevation", quiet = FALSE,
+  rivargs = NULL, ...)
 }
 \arguments{
 \item{dem}{List returned by \code{\link{read_dem}} or character string
@@ -40,8 +41,10 @@ DEFAULT: pch=15, cex=c(0.14, 0.25)}
 
 \item{quiet}{Logical: should progress messages be suppressed? DEFAULT: FALSE}
 
-\item{\dots}{Further arguments passed to \code{\link{vis_asc}} for DEM and
+\item{rivargs}{List of arguments passed to
 \code{\link{vis_asc}} or \code{\link{vis_river}} for FACC.}
+
+\item{\dots}{Further arguments passed to \code{\link{vis_asc}} for DEM, like overwrite=TRUE.}
 }
 \value{
 Invisible list dem or \code{\link{read_dem}} result
