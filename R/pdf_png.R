@@ -23,12 +23,15 @@
 #'
 #' unlink("dummyplot.pdf")
 #'
-#' @param file         filename without pdf/png extension. Files will never be overwritten,
-#'                     _1 will be appended, see \code{\link[berryFunctions]{newFilename}}.
+#' @param file         filename without pdf/png extension. Unless overwrite=TRUE,
+#'                     files will not be overwritten. _1 will be appended instead,
+#'                     see \code{\link[berryFunctions]{newFilename}}.
 #' @param pdf          Write plots created after calling this function into PDF
 #'                     instead of R graphics device? DEFAULT: FALSE
 #' @param png          Ditto for PNG. Set either to TRUE, but not both
 #'                     (will stop with an error). DEFAULT: FALSE
+#' @param overwrite    Logical: overwrite existing \code{file}?
+#'                     DEFAULT: FALSE (_n appended in filename)
 #' @param width,height Graph dimensions. DEFAULT: 7x5 inches
 #' @param units,res    Graph quality arguments passed only to \code{\link{png}}.
 #'                     DEFAULT: inches ("in"), 500 ppi
@@ -38,6 +41,7 @@ pdf_png <- function(
  file,
  pdf=FALSE,
  png=FALSE,
+ overwrite=FALSE,
  width=7,
  height=5,
  units="in",
@@ -49,7 +53,7 @@ pdf_png <- function(
   if(!pdf&!png) return(invisible("pdf and png are both FALSE."))
   figpath <- paste0(file, ".", if(pdf) "pdf", if(png) "png")
   # do not overwrite existing files
-  figpath <- berryFunctions::newFilename(figpath)
+  figpath <- berryFunctions::newFilename(figpath, ignore=overwrite)
   if(pdf) pdf(figpath, width=width, height=height, ...)
   if(png) png(figpath, width=width, height=height, units=units, res=res, ...)
 }

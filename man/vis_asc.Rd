@@ -5,10 +5,10 @@
 \title{Visualize asc files}
 \usage{
 vis_asc(asc = file.choose(), proj = NA, pdf = FALSE, png = TRUE,
-  outfile = asc$file, closedev = TRUE, pdfargs = NULL, add = FALSE,
-  asp = 1, mar = c(0, 0, 0, 0), mgp = c(3, 0.7, 0), col = seqPal(100),
-  bg = "grey", pch = 15, cex = 0.1, legend = TRUE, title = asc$name,
-  legargs = NULL, ...)
+  overwrite = FALSE, outfile = asc$file, closedev = TRUE,
+  pdfargs = NULL, add = FALSE, asp = 1, mar = c(0, 0, 0, 0),
+  mgp = c(3, 0.7, 0), col = seqPal(100), bg = "grey", pch = 15,
+  cex = 0.1, legend = TRUE, title = asc$name, legargs = NULL, ...)
 }
 \arguments{
 \item{asc}{List returned by \code{\link{read_asc}} or character string
@@ -19,6 +19,9 @@ is not a list. DEFAULT: NA}
 
 \item{pdf, png}{Save output to disc? See \code{\link{pdf_png}}.
 DEFAULT: PDF=FALSE, png=TRUE}
+
+\item{overwrite}{Logical: overwrite existing \code{file} via \code{\link{pdf_png}}?
+DEFAULT: FALSE (_n appended in filename)}
 
 \item{outfile}{Output filename without pdf/png extension. DEFAULT: asc$file}
 

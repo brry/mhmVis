@@ -4,18 +4,22 @@
 \alias{pdf_png}
 \title{Graph output file management}
 \usage{
-pdf_png(file, pdf = FALSE, png = FALSE, width = 7, height = 5,
-  units = "in", res = 500, ...)
+pdf_png(file, pdf = FALSE, png = FALSE, overwrite = FALSE, width = 7,
+  height = 5, units = "in", res = 500, ...)
 }
 \arguments{
-\item{file}{filename without pdf/png extension. Files will never be overwritten,
-_1 will be appended, see \code{\link[berryFunctions]{newFilename}}.}
+\item{file}{filename without pdf/png extension. Unless overwrite=TRUE,
+files will not be overwritten. _1 will be appended instead,
+see \code{\link[berryFunctions]{newFilename}}.}
 
 \item{pdf}{Write plots created after calling this function into PDF
 instead of R graphics device? DEFAULT: FALSE}
 
 \item{png}{Ditto for PNG. Set either to TRUE, but not both
 (will stop with an error). DEFAULT: FALSE}
+
+\item{overwrite}{Logical: overwrite existing \code{file}?
+DEFAULT: FALSE (_n appended in filename)}
 
 \item{width, height}{Graph dimensions. DEFAULT: 7x5 inches}
 

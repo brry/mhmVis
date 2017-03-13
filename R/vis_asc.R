@@ -18,6 +18,8 @@
 #'                is not a list. DEFAULT: NA
 #' @param pdf,png Save output to disc? See \code{\link{pdf_png}}.
 #'                DEFAULT: PDF=FALSE, png=TRUE
+#' @param overwrite Logical: overwrite existing \code{file} via \code{\link{pdf_png}}?
+#'                DEFAULT: FALSE (_n appended in filename)
 #' @param outfile Output filename without pdf/png extension. DEFAULT: asc$file
 #' @param closedev Logical: if pdf|png, close devica at end of function? DEFAULT: TRUE
 #' @param pdfargs List of arguments passed to \code{\link{pdf_png}}.
@@ -41,6 +43,7 @@ vis_asc <- function(
  proj=NA,
  pdf=FALSE,
  png=TRUE,
+ overwrite=FALSE,
  outfile=asc$file,
  closedev=TRUE,
  pdfargs=NULL,
@@ -66,7 +69,7 @@ if(!is.na(asc$proj) & missing(mar)) mar <- c(2.1,2.7,0.5,0.5)
 # saving plot setup
 if(!add)
   {
-  pdfdefaults <- list(file=outfile, pdf=pdf, png=png)
+  pdfdefaults <- list(file=outfile, pdf=pdf, png=png, overwrite=overwrite)
   do.call(pdf_png, berryFunctions::owa(pdfdefaults, pdfargs))
   par(mar=mar, mgp=mgp, bg=bg)
   }
