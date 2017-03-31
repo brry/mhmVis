@@ -17,6 +17,7 @@
 #' @param col   Color scale. DEFAULT: \code{\link{rivPal}(n=150)}
 #' @param lwd   Line width range. DEFAULT: 1:6
 #' @param add   Logical: add to existing plot? DEFAULT: FALSE
+#' @param quiet Logical: should progress messages be suppressed? DEFAULT: FALSE
 #' @param \dots Further arguments passed to \code{\link{segments}}.
 #'
 riverlines <- function(
@@ -25,15 +26,18 @@ riverlines <- function(
  col=rivPal(n=150),
  lwd=1:6,
  add=FALSE,
+ quiet=FALSE,
  ...)
 {
 # prepare line width:
+if(!quiet) message("Preparing line widths ...")
 z <- diag(dem$facc[sel$row,sel$col])
 z <- z*(dem$cellsize/1000)^2 # km^2
 cl <- classify(x=z, breaks=length(col) )
 lwd <- rescale(z,min(lwd),max(lwd))
 # Set up plot:
 if(!add) plot(1, type="n", ylim=range(dem$y), xlim=range(dem$x), las=1, ylab="", xlab="")
+if(!quiet) message("Drawing river segments ...")
 # actually draw lines
 segments(x0=diag(dem$x[sel$row,sel$col]), x1=diag(dem$x[sel$torow,sel$tocol]),
          y0=diag(dem$y[sel$row,sel$col]), y1=diag(dem$y[sel$torow,sel$tocol]),

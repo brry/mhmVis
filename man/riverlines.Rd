@@ -4,7 +4,8 @@
 \alias{riverlines}
 \title{draw river lines}
 \usage{
-riverlines(dem, sel, col = rivPal(n = 150), lwd = 1:6, add = FALSE, ...)
+riverlines(dem, sel, col = rivPal(n = 150), lwd = 1:6, add = FALSE,
+  quiet = FALSE, ...)
 }
 \arguments{
 \item{dem}{List returned by \code{\link{read_dem}}}
@@ -16,6 +17,8 @@ riverlines(dem, sel, col = rivPal(n = 150), lwd = 1:6, add = FALSE, ...)
 \item{lwd}{Line width range. DEFAULT: 1:6}
 
 \item{add}{Logical: add to existing plot? DEFAULT: FALSE}
+
+\item{quiet}{Logical: should progress messages be suppressed? DEFAULT: FALSE}
 
 \item{\dots}{Further arguments passed to \code{\link{segments}}.}
 }

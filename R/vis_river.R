@@ -20,7 +20,7 @@
 #' vis_dem(dem, png=FALSE)
 #' riv <- vis_river(dem)
 #' par(op)
-#' riverlines(dem, riv, col="orange")
+#' ca <- riverlines(dem, riv, col="orange")
 #' # for large catchments, computing is time consuming, so plotting can be outsourced
 #'
 #' library(berryFunctions)
@@ -105,7 +105,7 @@ sel$tocol <- sel$col + DIR[rows,"y"]
 #
 # draw segments:
 if(!quiet) message("Plotting river lines ...")
-z <- riverlines(dem=dem, sel=sel, col=col, lwd=lwd, add=add, ...)
+z <- riverlines(dem=dem, sel=sel, col=col, lwd=lwd, add=add, quiet=TRUE, ...)
 # Add legend:
 if(legend)
   {

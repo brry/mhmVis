@@ -52,7 +52,7 @@ op <- par(no.readonly=TRUE)
 vis_dem(dem, png=FALSE)
 riv <- vis_river(dem)
 par(op)
-riverlines(dem, riv, col="orange")
+ca <- riverlines(dem, riv, col="orange")
 # for large catchments, computing is time consuming, so plotting can be outsourced
 
 library(berryFunctions)
