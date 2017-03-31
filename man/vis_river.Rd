@@ -47,11 +47,13 @@ maps with the river added on top in the corner of plots, e.g. with
 # To be added
 
 if(FALSE){
-facc <- read_asc("U:/mHM_shared/basel_6935051/input/morph/facc.asc", proj=3035)
+dem <- read_dem("U:/mHM_shared/basel_6935051/input/morph", proj=3035)
 op <- par(no.readonly=TRUE)
-vis_asc(facc, png=FALSE)
-riv <- vis_river(facc)
+vis_dem(dem, png=FALSE)
+riv <- vis_river(dem)
 par(op)
+riverlines(dem, riv, col="orange")
+# for large catchments, computing is time consuming, so plotting can be outsourced
 
 library(berryFunctions)
 logHist(dem$facc*(facc$cellsize/1000)^2, breaks=30) # km^2

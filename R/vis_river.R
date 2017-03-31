@@ -10,18 +10,18 @@
 #' @seealso \code{\link{vis_dem}}, \code{\link{read_dem}}
 #' @keywords aplot
 #' @importFrom stats quantile
-#' @importFrom graphics segments
-#' @importFrom berryFunctions rescale seqPal classify
 #' @export
 #' @examples
 #' # To be added
 #'
 #' if(FALSE){
-#' facc <- read_asc("U:/mHM_shared/basel_6935051/input/morph/facc.asc", proj=3035)
+#' dem <- read_dem("U:/mHM_shared/basel_6935051/input/morph", proj=3035)
 #' op <- par(no.readonly=TRUE)
-#' vis_asc(facc, png=FALSE)
-#' riv <- vis_river(facc)
+#' vis_dem(dem, png=FALSE)
+#' riv <- vis_river(dem)
 #' par(op)
+#' riverlines(dem, riv, col="orange")
+#' # for large catchments, computing is time consuming, so plotting can be outsourced
 #'
 #' library(berryFunctions)
 #' logHist(dem$facc*(facc$cellsize/1000)^2, breaks=30) # km^2
@@ -104,15 +104,8 @@ sel$torow <- sel$row + DIR[rows,"x"]
 sel$tocol <- sel$col + DIR[rows,"y"]
 #
 # draw segments:
-z <- diag(dem$facc[sel$row,sel$col])
-z <- z*(dem$cellsize/1000)^2 # km^2
-cl <- classify(x=z, breaks=length(col) )
-lwd <- rescale(z,min(lwd),max(lwd))
 if(!quiet) message("Plotting river lines ...")
-if(!add) plot(1, type="n", ylim=range(dem$y), xlim=range(dem$x), las=1, ylab="", xlab="")
-segments(x0=diag(dem$x[sel$row,sel$col]), x1=diag(dem$x[sel$torow,sel$tocol]),
-         y0=diag(dem$y[sel$row,sel$col]), y1=diag(dem$y[sel$torow,sel$tocol]),
-         col=col[cl$index], lwd=lwd, ...)
+z <- riverlines(dem=dem, sel=sel, col=col, lwd=lwd, add=add, ...)
 # Add legend:
 if(legend)
   {
