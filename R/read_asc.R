@@ -13,7 +13,6 @@
 #' @seealso \code{\link{vis_asc}} for plotting the result
 #' @keywords file
 #' @importFrom OSMscale projectPoints pll
-#' @importFrom utils choose.dir tail
 #' @importFrom tools file_path_sans_ext
 #' @export
 #' @examples

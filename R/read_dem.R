@@ -8,20 +8,20 @@
 #' @author Berry Boessenkool, \email{berry-b@@gmx.de}, Feb-March 2017
 #' @seealso \code{\link{vis_dem}}
 #' @keywords hfile
-#' @importFrom utils choose.dir
+#' @importFrom tcltk tk_choose.dir
 #' @importFrom berryFunctions checkFile
 #' @export
 #' @examples
 #' # to be added
 #'
 #' @param inpath  Directory containing mHM input files "dem.asc" and "facc.asc".
-#'                DEFAULT: \code{\link{choose.dir}()} on windows, \code{"."} on unix
+#'                DEFAULT: \code{tcltk::\link{tk_choose.dir}()}
 #' @param proj    projection passed to \code{\link{read_asc}}. DEFAULT: NA
 #' @param quiet   Logical: should progress messages be suppressed? DEFAULT: FALSE
 #' @param \dots   Further arguments passed to \code{\link{read_asc}}.
 #'
 read_dem <- function(
- inpath=if(.Platform$OS.type=="windows") choose.dir() else ".",
+ inpath=tcltk::tk_choose.dir(),
  proj=NA,
  quiet=FALSE,
  ...)

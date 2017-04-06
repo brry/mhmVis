@@ -4,12 +4,11 @@
 \alias{read_dem}
 \title{Read dem and facc files}
 \usage{
-read_dem(inpath = if (.Platform$OS.type == "windows") choose.dir() else ".",
-  proj = NA, quiet = FALSE, ...)
+read_dem(inpath = tcltk::tk_choose.dir(), proj = NA, quiet = FALSE, ...)
 }
 \arguments{
 \item{inpath}{Directory containing mHM input files "dem.asc" and "facc.asc".
-DEFAULT: \code{\link{choose.dir}()} on windows, \code{"."} on unix}
+DEFAULT: \code{tcltk::\link{tk_choose.dir}()}}
 
 \item{proj}{projection passed to \code{\link{read_asc}}. DEFAULT: NA}
 
