@@ -95,4 +95,6 @@ saveVideo(
 #' ffmpeg path on berry's computers
 #' @seealso \code{\link{vis_nc_film}}, where it is defined
 #' @export
-ffberry <- "C:/Program Files/R/ffmpeg/bin/ffmpeg.exe"
+ffberry <- if(Sys.info()["sysname"]=="Linux") "/usr/bin/ffmpeg" else 
+ "C:/Program Files/R/ffmpeg/bin/ffmpeg.exe"
+
