@@ -132,7 +132,6 @@ to finalize installation:
 ```bash
 cd ../mHM_v5.6/
 make >& make.out
-
 make clean # to be run after errors
 ```
 
@@ -142,13 +141,12 @@ If you run into the errors:
 [installed](https://curl.haxx.se/docs/install.html) in the (default) /usr/local folder
 
 ```bash
-ls
 cd ../curl-7.52.1
 ./configure
 make >& make.out
 make test >& maketest.out
 sudo make install >& makeinstall.out
-```bash
+```
 
 in berry.gnu54, change
 ```
