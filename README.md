@@ -109,7 +109,7 @@ sudo make install >& makeinstall.out
 
 
 If all the dependencies are installed, you can configure and install mHM.
-In my_mHM_folder/make.config/berry.gnu54 I have
+In [my_mHM_folder/make.config/berry.gnu54](https://github.com/brry/mhmVis/blob/master/inst/extdata/berry.gnu54) I have
 ```
 # Paths
 GNUDIR := /usr
@@ -122,8 +122,9 @@ HDF5LIB := /usr/local/lib
 NCDIR   := /usr/local
 NCFDIR  := /usr/local/netcdf_4.4_gfortran54
 CURLLIB := /usr/bin
-
+```
 and finally, in my_mHM_folder/Makefile
+```
 system   := berry
 compiler := gnu54
 ```
