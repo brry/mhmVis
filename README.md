@@ -35,43 +35,47 @@ Examples to be added
 
 ### Step 1: Set up virtual machine with linux ubuntu
 
-Install [VMware](https://www.vmware.com/products/player/playerpro-evaluation.html), Download [Ubuntu ISO file](https://www.ubuntu.com/download/desktop)
+My favorite way of working with mHM on a windows machine. Install [VMware](https://www.vmware.com/products/player/playerpro-evaluation.html) and download an [Ubuntu ISO file](https://www.ubuntu.com/download/desktop).
 
 VMware - New virtual Machine - select iso from disc  
 Settings:  
 - more RAM space  
 - more Cores  
 
-Optional, recommended: Create 
+Optional, but recommended: Create a 
 [shared folder](https://www.vmware.com/support/ws5/doc/ws_running_shared_folders.html) 
-(in other location than where virtual machine is stored)
+(in another location than where virtual machine is stored).
 
 ### Step 2: Install MHM with dependencies
 
-This is an instruction for Ubuntu 16.04 (GNU compilers as per default) for mHM 5.6 from dec 2016.
-by Berry Boessenkool, Uni Potsdam, berry-b@gmx.de
+This is an instruction for Ubuntu 16.04 (GNU compilers as per default) for mHM 5.6 from dec 2016, updated in July 2017, 
+by Berry Boessenkool, Uni Potsdam, <berry-b@gmx.de>.
 
 In the virtual Linux, you may need to configure to a German keyboard in the terminal (CTRL + ALT + T):  
 `sudo dpkg-reconfigure keyboard-configuration`
 
-The [official netcdf documentation](http://www.unidata.ucar.edu/software/netcdf/docs/getting_and_building_netcdf.html)
+For completeness, here's a link to the [official netcdf documentation](http://www.unidata.ucar.edu/software/netcdf/docs/getting_and_building_netcdf.html).
 
-Download the four dependencies 
+Download the five dependencies 
 
+* [CURL](https://curl.haxx.se/download.html), otherwise you may run into the errors: `/usr/bin/ld: cannot find -lsz` and`/usr/bin/ld: cannot find -lcurl`, even though `whereis curl` returns curl: /usr/bin/curl /
 * [zlib](http://www.zlib.net/) - zlib source code, version 1.2.10, tar.gz format 593K -  US (zlib.net) 
 * [hdf5](https://support.hdfgroup.org/downloads/)
 * [netcdf-c](https://github.com/Unidata/netcdf-c/releases) and [netcdf-fortran](https://github.com/Unidata/netcdf-fortran/releases) or from [Unidata](http://www.unidata.ucar.edu/downloads/netcdf/index.jsp) - the Latest Stable netCDF-[C/Fortran] Release, tar.gz
 
-and unzip them to some folder (not the place where you will install them). 
-You may also need curl, which I already had. 'whereis curl' returns curl: /usr/bin/curl /
+and unzip them to some folder (not the place where you will install them).
+The version numbers below may of course be different from yours by now.
 
 If you're working on a windows PC with Ubuntu on a virtual machine with VMware, you should not install in the shared folder.
 The hdf5 'make' and 'make check' take several minutes. 
 'make' before 'make check' was not necessary on native linux, only on the virtual machine.
-The `>&` routes the output into a file, thus saving it for later reference 
-(and keeping the terminal clean of 19k lines of output). You can open the files quickly with e.g. `gedit make.out`.
+The `>&` routes the output along with any errors into a file, thus saving it for later reference 
+(and keeping the terminal clean of 19k lines of output). 
+You can open the files quickly with e.g. `gedit make.out`.
+
 If you close the terminal inbetween, please redefine PROGDIR at the beginning of the next session!
-The Version numbers will of course be different from yours by now.
+If you use another program directory than the /usr/local folder, 
+you should [find out](https://curl.haxx.se/docs/install.html) how to pass it to curl.
 
 ```bash
 berry@berry-E8420:~/Documents$
@@ -82,6 +86,13 @@ sudo apt install gfortran
 gcc --version   # --> 5.4.0 
 
 PROGDIR=/usr/local
+
+cd ../curl-7.52.1
+./configure
+make >& make.out
+make test >& maketest.out
+sudo make install >& makeinstall.out
+gedit makeinstall.out # to check for errors (after each step below as well)
 
 cd zlib-1.2.11
 ./configure --prefix=${PROGDIR}
@@ -107,9 +118,11 @@ make check >& makecheck.out
 sudo make install >& makeinstall.out
 ```
 
+If you have made it this far without errors, please celebrate. ;-)
 
-If all the dependencies are installed, you can configure and install mHM.
-In [my_mHM_folder/make.config/berry.gnu54](https://github.com/brry/mhmVis/blob/master/inst/extdata/berry.gnu54) I have
+Now that all the dependencies are installed, you can configure and install mHM.
+In `my_mHM_folder/make.config`, along with [berry.alias](https://github.com/brry/mhmVis/blob/master/inst/extdata/berry.alias),
+I have the [berry.gnu54](https://github.com/brry/mhmVis/blob/master/inst/extdata/berry.gnu54) file with
 ```
 # Paths
 GNUDIR := /usr
@@ -123,39 +136,26 @@ NCDIR   := /usr/local
 NCFDIR  := /usr/local/netcdf_4.4_gfortran54
 CURLLIB := /usr/bin
 ```
-and finally, in my_mHM_folder/Makefile
+You may have to change `SZLIB` to `ZLIB`, but that is currently untested. Probably try having both...
+Don't forget to tell the `my_mHM_folder/Makefile` which configuration file to use:
 ```
 system   := berry
 compiler := gnu54
 ```
 
-to finalize installation:
+To finally actually install mHM:
 ```bash
 cd ../mHM_v5.6/
 make >& make.out
-make clean # to be run after errors
+make clean >& makeclean.out # to be run after errors
 ```
 
-If you run into the errors:
-`/usr/bin/ld: cannot find -lsz` and`/usr/bin/ld: cannot find -lcurl`,  
-[download](https://curl.haxx.se/download.html) curl and have it 
-[installed](https://curl.haxx.se/docs/install.html) in the (default) /usr/local folder
+Here's my proposed workflow:
 
-```bash
-cd ../curl-7.52.1
-./configure
-make >& make.out
-make test >& maketest.out
-sudo make install >& makeinstall.out
-```
+Create a folder with all the input and output data for a project in the VMware shared folder 
+(if you also want to access it from windows).
+Or in some other place where it fits the structure of your work.
 
-in berry.gnu54, change
-```
-SZLIB := /usr/local/lib
-to
-ZLIB  := /usr/local/lib
-```
-
-
-
+Then copy the mhm executable file to that place, so that you have the software creation separate from it's usage.
+That will allow you to easily create other builds of mHM (for example, with parallel computing enabled) and keep a good overview of those builds.
 
