@@ -1,5 +1,5 @@
 #' Graph output file management
-#'
+#' 
 #' Graph output file management.
 #' Do not forget to close the graphics device again with code like \code{if(pdf|png) dev.off()}\.cr
 #' PDFs are vector graphics and nicely zoomable and thus the default for
@@ -7,7 +7,7 @@
 #' PNGs are pixely raster graphics but may have a much smaller file size.
 #' They are better suited for spatial grids and thus the default in
 #' \code{\link{vis_asc}} and \code{\link{vis_dem}}.
-#'
+#' 
 #' @return Nothing, but opens a pdf or png device if either pdf or png is TRUE.
 #' @author Berry Boessenkool, \email{berry-b@@gmx.de}, Feb 2017
 #' @seealso \code{\link{pdf}}, \code{\link{png}}
@@ -16,13 +16,13 @@
 #' @importFrom grDevices pdf png
 #' @export
 #' @examples
-#'
+#' 
 #' pdf_png("dummyplot", pdf=TRUE)
 #' plot(cumsum(rnorm(1000)), type="l")
 #' dev.off()
-#'
+#' 
 #' unlink("dummyplot.pdf")
-#'
+#' 
 #' @param file         filename without pdf/png extension. Unless overwrite=TRUE,
 #'                     files will not be overwritten. _1 will be appended instead,
 #'                     see \code{\link[berryFunctions]{newFilename}}.
@@ -36,7 +36,7 @@
 #' @param units,res    Graph quality arguments passed only to \code{\link{png}}.
 #'                     DEFAULT: inches ("in"), 500 ppi
 #' @param \dots        Further arguments passed to \code{\link{pdf}} or \code{\link{png}}
-#'
+#' 
 pdf_png <- function(
  file,
  pdf=FALSE,

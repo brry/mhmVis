@@ -1,7 +1,7 @@
 #' Read NETCDF file
-#'
+#' 
 #' Read NETCDF file and extract time, location and a variable from it.
-#'
+#' 
 #' @return List with time, lat, lon, var, varname, file, cdf (result of
 #' \code{ncdf4::\link[ncdf4]{nc_open}}, from which the previous elements are extracted.)
 #' @section Warning: This has not yet been tested on many nc files! Please report any errors.
@@ -13,7 +13,7 @@
 #' @export
 #' @examples
 #' # to be added
-#'
+#' 
 #' @param file  Name of nc file. May include relative or absolute path.
 #'              DEFAULT: \code{\link{file.choose}()}
 #' @param var   Name of variable to extract, interactive choice if \code{var} not
@@ -21,7 +21,7 @@
 #' @param lat,lon Name of latitude and longitude variables. DEFAULT: "lat","lon"
 #' @param \dots Further arguments passed to \code{ncdf4::\link[ncdf4]{nc_open}},
 #'              like verbose=TRUE
-#'
+#' 
 read_nc <- function(
 file=file.choose(),
 var="",

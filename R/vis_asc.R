@@ -1,7 +1,7 @@
 #' Visualize asc files
-#'
+#' 
 #' plot mHM-typical ASC raster files
-#'
+#' 
 #' @return Invisible list with pdf, png, add, closedev
 #' @author Berry Boessenkool, \email{berry-b@@gmx.de}, Feb-March 2017
 #' @seealso \code{\link{read_asc}}, \code{\link{vis_dem}}
@@ -11,7 +11,7 @@
 #' @export
 #' @examples
 #' # to be added
-#'
+#' 
 #' @param asc     List returned by \code{\link{read_asc}} or character string
 #'                giving a filename (passed to read_asc). DEFAULT: file.choose()
 #' @param proj    Projection passed to \code{\link{read_asc}} if \code{asc}
@@ -37,7 +37,7 @@
 #' @param \dots   Arguments passed to \code{graphics::\link{image}} or
 #'                \code{berryFunctions::\link[berryFunctions]{colPoints}}
 #'                (if \code{proj} != NA).
-#'
+#' 
 vis_asc <- function(
  asc=file.choose(),
  proj=NA,

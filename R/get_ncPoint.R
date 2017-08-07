@@ -1,7 +1,7 @@
 #' Get coordinates of point in nc plot
-#'
+#' 
 #' Get coordinates of a point (or several points) in an nc plot
-#'
+#' 
 #' @return data.frame with \code{n} rows and 3 columns (index, row, col)
 #' @author Berry Boessenkool, \email{berry-b@@gmx.de}, Feb 2017
 #' @seealso \code{\link{read_nc}}, \code{\link{vis_nc}}
@@ -10,12 +10,12 @@
 #' @export
 #' @examples
 #' # to be added
-#'
+#' 
 #' @param nc    nc object from \code{\link{read_nc}}
 #' @param n     Maximum number of poins to be identified. DEFAULT: 1
 #' @param plot  Label the identified points? DEFAULT: FALSE
 #' @param \dots Further arguments passed to \code{\link{identify}}
-#'
+#' 
 get_ncPoint <- function(
  nc,
  n=1,

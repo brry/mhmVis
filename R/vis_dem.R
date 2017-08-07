@@ -1,8 +1,8 @@
 #' Visualize dem and facc files
-#'
+#' 
 #' Visualize mHM elevation input data: dem (Digital Elevation Model) and
 #' facc (Flow Accumulation, rivers modeled from DEM)
-#'
+#' 
 #' @return Invisible list dem or \code{\link{read_dem}} result
 #' @author Berry Boessenkool, \email{berry-b@@gmx.de}, Feb-March 2017
 #' @seealso \code{\link{read_dem}}, \code{\link{vis_asc}} for plotting any asc file
@@ -12,7 +12,7 @@
 #' @export
 #' @examples
 #' # to be added
-#'
+#' 
 #' @param dem     List returned by \code{\link{read_dem}} or character string
 #'                giving a directory (passed to read_dem).
 #' @param proj    Projection passed to \code{\link{read_asc}}. DEFAULT: NA
@@ -36,7 +36,7 @@
 #' @param rivargs List of arguments passed to
 #'                \code{\link{vis_asc}} or \code{\link{vis_river}} for FACC.
 #' @param \dots   Further arguments passed to \code{\link{vis_asc}} for DEM, like overwrite=TRUE.
-#'
+#' 
 vis_dem <- function(
  dem,
  proj=NA,

@@ -1,9 +1,9 @@
 #' Visualize NETCDF file
-#'
+#' 
 #' Visualize a single time slice of a NETCDF object.
 #' If you want to project correctly, use OSMscale as in the example below.
 #' (\url{https://github.com/brry/OSMscale#intro}).
-#'
+#' 
 #' @return \code{\link{colPoints}} list output
 #' @author Berry Boessenkool, \email{berry-b@@gmx.de}, Feb 2017
 #' @seealso \code{\link{read_nc}},
@@ -16,7 +16,7 @@
 #' @export
 #' @examples
 #' # to be added
-#'
+#' 
 #' \dontrun{ # too time consuming for CRAN checks
 #' # install.packages("OSMscale)
 #' library(OSMscale)
@@ -25,7 +25,7 @@
 #' plot(map); scaleBar(map)
 #' vis_nc(nc, x=pp$x, y=pp$y, add=TRUE)
 #' }
-#'
+#' 
 #' @param nc      nc object from \code{\link{read_nc}}
 #' @param index   Integer: a single time slice number to be plotted.
 #'                To plot several slices, use \code{\link{vis_nc_all}}. DEFAULT: 1
@@ -42,7 +42,7 @@
 #'                \code{berryFunctions::\link[berryFunctions]{colPointsLegend}})
 #' @param \dots   Further arguments passed to
 #'                \code{berryFunctions::\link[berryFunctions]{colPoints}}
-#'
+#' 
 vis_nc <- function(
  nc,
  index=1,

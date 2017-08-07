@@ -1,7 +1,7 @@
 #' Visualize NETCDF file
-#'
+#' 
 #' Visualize several (or even all) time slices of a NETCDF object into an mp4 animation
-#'
+#' 
 #' @return list of \code{\link{colPoints}} list outputs
 #' @author Berry Boessenkool, \email{berry-b@@gmx.de}, Feb 2017
 #' @seealso \code{\link{vis_nc}}, \code{\link{vis_nc_all}}
@@ -12,7 +12,7 @@
 #' @export
 #' @examples
 #' # to be added
-#'
+#' 
 #' @param nc       nc object from \code{\link{read_nc}}
 #' @param index    Integer: time slice numbers to be plotted. See \code{\link{vis_nc_all}}.
 #'                 DEFAULT: seq_along(nc$time)
@@ -40,7 +40,7 @@
 #' @param bg.leg   \code{\link[berryFunctions]{colPointsLegend}} Background. DEFAULT: NA
 #' @param \dots    Further arguments passed to \code{\link{vis_nc}}.
 #'                 You likely do not want to mess with z!
-#'
+#' 
 vis_nc_film <- function(
  nc,
  index=seq_along(nc$time),
@@ -95,6 +95,6 @@ saveVideo(
 #' ffmpeg path on berry's computers
 #' @seealso \code{\link{vis_nc_film}}, where it is defined
 #' @export
-ffberry <- if(Sys.info()["sysname"]=="Linux") "/usr/bin/ffmpeg" else 
+ffberry <- if(Sys.info()["sysname"]=="Linux") "/usr/bin/ffmpeg" else
  "C:/Program Files/R/ffmpeg/bin/ffmpeg.exe"
 

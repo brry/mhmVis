@@ -1,14 +1,14 @@
 #' Check list elements
-#'
+#' 
 #' Check list elements. Unexported function, documented for reference.
-#'
+#' 
 #' @return Nothing
 #' @author Berry Boessenkool, \email{berry-b@@gmx.de}, March 2017
 # @export
-#'
+#' 
 #' @param list  List object.
 #' @param \dots Elements that should be checked for presence.
-#'
+#' 
 check_list_elements <- function(
  list,
   ...)

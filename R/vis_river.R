@@ -1,10 +1,10 @@
 #' Visialize DEM river as lines (not raster)
-#'
+#' 
 #' Convert flow accumulation raster to line segments and plot it.
 #' This enables much faster drawing, making it suitable e.g. for drawing small
 #' maps with the river added on top in the corner of plots, e.g. with
 #' \code{berryFunctions::\link{smallPlot}} as in the example.
-#'
+#' 
 #' @return data.frame with segment indices
 #' @author Berry Boessenkool, \email{berry-b@@gmx.de}, Mar 2017
 #' @seealso \code{\link{vis_dem}}, \code{\link{read_dem}}
@@ -13,7 +13,7 @@
 #' @export
 #' @examples
 #' # To be added
-#'
+#' 
 #' if(FALSE){
 #' dem <- read_dem("U:/mHM_shared/basel_6935051/input/morph", proj=3035)
 #' op <- par(no.readonly=TRUE)
@@ -22,11 +22,11 @@
 #' par(op)
 #' ca <- riverlines(dem, riv, col="orange")
 #' # for large catchments, computing is time consuming, so plotting can be outsourced
-#'
+#' 
 #' library(berryFunctions)
 #' logHist(dem$facc*(facc$cellsize/1000)^2, breaks=30) # km^2
 #' }
-#'
+#' 
 #' # Add rivers as small plot
 #' \dontrun{ ## Not run in CRAN checks to avoid downloading background map
 #' library(OSMscale)
@@ -34,7 +34,7 @@
 #' par(mar=c(0,0,0,0))
 #' plot(map, removeMargin=FALSE)
 #' vis_river(facc, add=TRUE, lwd=1:3)
-#'
+#' 
 #' par(op)
 #' plot(cumsum(rnorm(300)), type="l") # some gauge properties, e.g.
 #' smallPlot({
@@ -42,9 +42,9 @@
 #'         vis_river(facc, add=TRUE, lwd=1:3, legend=FALSE)
 #'         points(8, 47.55, col="red", pch=3, lwd=3, cex=2)
 #'         }, x1=0, x2=0.4, y1=0.77, y2=1, mar=0, border=NA, bg=NA)
-#'
+#' 
 #' } # end dontrun
-#'
+#' 
 #' @param dem   List returned by \code{\link{read_dem}} or character string
 #'              giving a directory (passed to read_dem).
 #' @param proj  Projection passed to \code{\link{read_asc}}. DEFAULT: NA
@@ -59,7 +59,7 @@
 #' @param legargs List of arguments passed to \code{\link{colPointsLegend}}.
 #' @param quiet   Logical: should progress messages be suppressed? DEFAULT: FALSE
 #' @param \dots   Further arguments passed to \code{\link{segments}}.
-#'
+#' 
 vis_river <- function(
  dem,
  proj=NA,

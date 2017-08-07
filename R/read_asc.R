@@ -1,7 +1,7 @@
 #' Read asc files
-#'
+#' 
 #' Read mHM-typical ASC raster files and create a full set of (projected) coordinates
-#'
+#' 
  #' @return Invisible list with matrices for "asc", "x" and "y",
 #' as well as character strings for the filename ("file" and "name"),
 #' and the projection ("proj").
@@ -17,7 +17,7 @@
 #' @export
 #' @examples
 #' # to be added
-#'
+#' 
 #' @param file      Name of file. DEFAULT: \code{\link{file.choose}()}
 #' @param proj      Current projection string or NA.
 #'                  If not NA, coordinates will be converted to lat-long coordinates.
@@ -29,7 +29,7 @@
 #'                  \code{OSMscale::\link[OSMscale]{projectPoints}}.
 #'                  DEFAULT: NA
 #' @param \dots     Further arguments passed to \code{\link{read.table}}
-#'
+#' 
 read_asc <- function(
  file=file.choose(),
  proj=NA,

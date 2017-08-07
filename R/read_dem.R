@@ -1,8 +1,8 @@
 #' Read dem and facc files
-#'
+#' 
 #' Read mHM-typical elevation input data: dem (Digital Elevation Model) and
 #' facc (Flow Accumulation, rivers modeled from DEM)
-#'
+#' 
 #' @return list as in \code{\link{read_asc}}, but "asc" is replaced with
 #' elements "dem", "facc" and "fdir". The element "folder" is added as well.
 #' @author Berry Boessenkool, \email{berry-b@@gmx.de}, Feb-March 2017
@@ -13,13 +13,13 @@
 #' @export
 #' @examples
 #' # to be added
-#'
+#' 
 #' @param inpath  Directory containing mHM input files "dem.asc" and "facc.asc".
 #'                DEFAULT: \code{tcltk::\link{tk_choose.dir}()}
 #' @param proj    projection passed to \code{\link{read_asc}}. DEFAULT: NA
 #' @param quiet   Logical: should progress messages be suppressed? DEFAULT: FALSE
 #' @param \dots   Further arguments passed to \code{\link{read_asc}}.
-#'
+#' 
 read_dem <- function(
  inpath=tcltk::tk_choose.dir(),
  proj=NA,

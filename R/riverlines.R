@@ -1,7 +1,7 @@
 #' draw river lines
-#'
+#' 
 #' Draw river lines, used within \code{\link{vis_river}}.
-#'
+#' 
 #' @return catchment area of each cell
 #' @author Berry Boessenkool, \email{berry-b@@gmx.de}, Mar 2017
 #' @seealso \code{\link{vis_river}}
@@ -11,7 +11,7 @@
 #' @export
 #' @examples
 #' # see vis_river
-#'
+#' 
 #' @param dem   List returned by \code{\link{read_dem}}
 #' @param sel   Segment indices returned by \code{\link{vis_river}}
 #' @param col   Color scale. DEFAULT: \code{\link{rivPal}(n=150)}
@@ -19,7 +19,7 @@
 #' @param add   Logical: add to existing plot? DEFAULT: FALSE
 #' @param quiet Logical: should progress messages be suppressed? DEFAULT: FALSE
 #' @param \dots Further arguments passed to \code{\link{segments}}.
-#'
+#' 
 riverlines <- function(
  dem,
  sel,

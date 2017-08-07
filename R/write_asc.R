@@ -1,7 +1,7 @@
 #' Write asc files
-#'
+#' 
 #' Write asc file to disc (useful after changing the asc$asc element).
-#'
+#' 
 #' @return Nothing
 #' @author Berry Boessenkool, \email{berry-b@@gmx.de}, March 2017
 #' @seealso \code{\link{read_asc}}
@@ -11,11 +11,11 @@
 #' @export
 #' @examples
 #' # to be added
-#'
+#' 
 #' @param asc     List returned by \code{\link{read_asc}}.
 #' @param file    Filename. DEFAULT: \code{berryFunctions::\link{newFilename}(asc$file)}
 #' @param \dots   Further arguments passed to \code{\link{write.table}}.
-#'
+#' 
 write_asc <- function(
  asc,
  file=newFilename(asc$file),
