@@ -9,6 +9,7 @@
 #' @keywords hplot
 #' @importFrom animation saveVideo ani.options
 #' @importFrom berryFunctions newFilename owa
+#' @importFrom grDevices dev.off png
 #' @export
 #' @examples
 #' # to be added

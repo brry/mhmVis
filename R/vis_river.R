@@ -10,6 +10,8 @@
 #' @seealso \code{\link{vis_dem}}, \code{\link{read_dem}}
 #' @keywords aplot
 #' @importFrom stats quantile
+#' @importFrom berryFunctions colPointsLegend owa
+#' @importFrom utils read.table
 #' @export
 #' @examples
 #' # To be added

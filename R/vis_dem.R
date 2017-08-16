@@ -7,7 +7,7 @@
 #' @author Berry Boessenkool, \email{berry-b@@gmx.de}, Feb-March 2017
 #' @seealso \code{\link{read_dem}}, \code{\link{vis_asc}} for plotting any asc file
 #' @keywords hplot color spatial
-#' @importFrom grDevices terrain.colors
+#' @importFrom grDevices terrain.colors dev.off
 #' @importFrom berryFunctions seqPal owa
 #' @export
 #' @examples

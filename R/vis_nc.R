@@ -11,7 +11,7 @@
 #'          \code{\link{get_ncPoint}}, \code{\link{colPoints}}
 #' @keywords hplot
 #' @importFrom RColorBrewer brewer.pal
-#' @importFrom berryFunctions colPoints owa
+#' @importFrom berryFunctions colPoints owa seqPal
 #' @importFrom pbapply pbapply
 #' @export
 #' @examples

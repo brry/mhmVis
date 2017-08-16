@@ -14,6 +14,7 @@
 #' @keywords file
 #' @importFrom OSMscale projectPoints pll
 #' @importFrom tools file_path_sans_ext
+#' @importFrom utils read.table
 #' @export
 #' @examples
 #' # to be added

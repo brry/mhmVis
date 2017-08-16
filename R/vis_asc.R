@@ -8,6 +8,7 @@
 #' @keywords hplot color spatial
 #' @importFrom berryFunctions colPoints colPointsLegend seqPal owa almost.equal
 #' @importFrom graphics par image
+#' @importFrom grDevices dev.off
 #' @export
 #' @examples
 #' # to be added

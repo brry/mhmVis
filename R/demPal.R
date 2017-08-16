@@ -8,6 +8,7 @@
 #' @seealso \code{\link{seqPal}}, \code{\link{terrain.colors}}
 #' @keywords aplot
 #' @importFrom berryFunctions seqPal
+#' @importFrom grDevices terrain.colors
 #' @export
 #' @examples
 #' image(volcano, col=rivPal() )

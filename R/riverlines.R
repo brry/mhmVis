@@ -6,7 +6,7 @@
 #' @author Berry Boessenkool, \email{berry-b@@gmx.de}, Mar 2017
 #' @seealso \code{\link{vis_river}}
 #' @keywords aplot
-#' @importFrom graphics segments
+#' @importFrom graphics segments plot
 #' @importFrom berryFunctions rescale classify
 #' @export
 #' @examples

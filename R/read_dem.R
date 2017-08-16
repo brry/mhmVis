@@ -10,6 +10,7 @@
 #' @keywords hfile
 #' @importFrom tcltk tk_choose.dir
 #' @importFrom berryFunctions checkFile
+#' @importFrom utils read.table
 #' @export
 #' @examples
 #' # to be added
