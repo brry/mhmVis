@@ -8,3 +8,4 @@ Imports: berryFunctions (>= 1.14.14), ncdf4, RColorBrewer, pbapply, animation, O
 License: GPL(>=2)
 LazyData: true
 RoxygenNote: 6.0.1
+BugReports: https://github.com/brry/mhmVis/issues
