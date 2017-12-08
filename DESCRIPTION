@@ -4,7 +4,8 @@ Version: 0.2.4
 Date: 2017-04-06
 Authors@R: person("Berry", "Boessenkool", email = "berry-b@gmx.de", role = c("aut", "cre"))
 Description: Visualize several mHM input or output files. mHM is a multiscale Hydrological Model developed at UFZ Leipzig.
-Imports: berryFunctions (>= 1.14.14), ncdf4, RColorBrewer, pbapply, animation, OSMscale (>= 0.4.4)
+Imports: berryFunctions (>= 1.14.14), ncdf4, RColorBrewer, pbapply, animation
+Suggests: OSMscale (>= 0.4.4)
 License: GPL(>=2)
 LazyData: true
 RoxygenNote: 6.0.1
