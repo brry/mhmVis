@@ -14,7 +14,7 @@ If not NA, coordinates will be converted to lat-long coordinates.
 If \code{proj} is a number, e.g. 3035,
 it will be replaced with the online epsg proj4 from
 \url{http://www.spatialreference.org/ref/epsg/3035/}.
-Note that setting code{proj} may increase computing time a lot.
+Note that setting \code{proj} may increase computing time a lot.
 \code{proj} is passed as the \code{from} argument to
 \code{OSMscale::\link[OSMscale]{projectPoints}}.
 DEFAULT: NA}
